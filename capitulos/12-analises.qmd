@@ -1,71 +1,80 @@
-# As análises
+# Análise: o exemplo do teste-t {#sec-analise-exemplo}
 
-Com os pressupostos checados, escolhemos a análise. A pergunta e o delineamento decidem — não o contrário.
+Com os pressupostos checados, escolhemos a análise. A pergunta e o delineamento decidem — não o contrário. Neste capítulo trabalhamos **um exemplo completo** com o **teste-t**, a análise mais simples para comparar grupos. Ele é o nosso fio condutor: você verá o mesmo exemplo planejado (Pilar 1), analisado aqui (Pilar 2) e comunicado em PDF (Pilar 3). As demais técnicas — ANOVA, regressão, não-paramétrica, multivariada — ganham capítulos próprios mais adiante.
 
-## Mapa de decisão
+## Mapa de decisão (visão geral)
 
 ::: {.conceito}
-**Que análise usar?**
+**Que análise usar?** Uma prévia do que vem nos capítulos de técnica:
 
-- Comparar a **média de 2 grupos** → teste-t (ou Mann-Whitney se a normalidade falhar).
-- Comparar a **média de 3+ grupos** → ANOVA (ou Kruskal-Wallis).
-- **Relação entre duas variáveis numéricas** → correlação e regressão linear.
-- **Associação entre duas variáveis categóricas** → qui-quadrado.
-- **Dois fatores ao mesmo tempo** → ANOVA fatorial (testa também a interação).
+- Comparar a **média de 2 grupos** → **teste-t** (nosso exemplo aqui).
+- Comparar a **média de 3+ grupos** → ANOVA.
+- **Relação entre duas variáveis numéricas** → regressão.
+- Quando a normalidade falha → alternativas **não-paramétricas** (Mann-Whitney, etc.).
+- **Muitas variáveis ao mesmo tempo** → multivariada (PCA, agrupamento).
 :::
 
-## Comparar dois grupos
+Por enquanto, foquemos no caso de **dois grupos**.
+
+## A pergunta do exemplo
+
+> O peso das tainhas difere entre dois estuários (A e B)?
+
+É uma comparação de **uma variável numérica** (peso) entre **dois grupos** (estuário A vs B). O teste indicado é o **teste-t para duas amostras independentes** — desde que os pressupostos sejam atendidos.
+
+## Passo a passo no R
 
 ```r
-# pressupostos OK → teste-t
-t.test(peso_g ~ especie, data = peixes)
+library(tidyverse)
+peixes <- read_csv("dados/desafio01_estuarios.csv")
+peixes$estuario <- factor(peixes$estuario)
 
-# normalidade falhou → alternativa não-paramétrica
-wilcox.test(peso_g ~ especie, data = peixes)
-```
-
-## Comparar três ou mais grupos: ANOVA
-
-```r
-modelo <- aov(peso_g ~ estuario, data = peixes)
-summary(modelo)
-
-# se a ANOVA for significativa, qual grupo difere de qual?
-TukeyHSD(modelo)
+# 1. Descritiva por grupo — sempre olhe os dados primeiro
+peixes |>
+  group_by(estuario) |>
+  summarise(n = n(), media = mean(peso_g), dp = sd(peso_g))
 ```
 
 ::: {.rnapratica}
-A fórmula `peso_g ~ estuario` lê-se "peso_g **em função de** estuario". O `~` aparece em quase todas as análises do R: à esquerda a variável resposta, à direita a(s) explicativa(s). É a gramática central da modelagem em R.
+A fórmula `peso_g ~ estuario` lê-se "peso_g em função de estuario": à esquerda a variável resposta, à direita o grupo. Essa gramática com `~` aparece em quase toda análise do R.
 :::
 
-## Relação entre variáveis numéricas: regressão
+## Checar os pressupostos (antes do teste!)
 
-A relação peso–comprimento é o pão com manteiga da biologia pesqueira:
-
-```r
-modelo <- lm(peso_g ~ comp_cm, data = peixes)
-summary(modelo)        # coeficientes, R², p-valor
-```
-
-::: {.conceito}
-A regressão **também tem pressupostos**, verificados nos **resíduos** (não nos dados brutos): os resíduos devem ser aproximadamente normais, ter variância constante e não mostrar padrão. Cheque com `plot(modelo)` — quatro gráficos diagnósticos aparecem. Para peso–comprimento, costuma-se ajustar a relação na forma log–log, mas isso fica para a aula.
-:::
+O teste-t assume **independência**, **normalidade** dentro de cada grupo e **variâncias homogêneas**. Reveja @sec-pressupostos para o detalhe.
 
 ```r
-plot(modelo)   # diagnóstico dos resíduos — sempre olhe antes de confiar no R²
+# Normalidade dentro de cada grupo (gráfico decide melhor que o p-valor)
+peixes |> filter(estuario == "A") |> pull(peso_g) |> shapiro.test()
+peixes |> filter(estuario == "B") |> pull(peso_g) |> shapiro.test()
+
+# Homogeneidade de variâncias
+library(car)
+leveneTest(peso_g ~ estuario, data = peixes)
 ```
-
-## Variáveis categóricas: qui-quadrado
-
-```r
-tabela <- table(peixes$sexo, peixes$maturacao)
-chisq.test(tabela)
-```
-
-## Reportar o resultado
-
-Um resultado completo traz: o **teste usado**, a **estatística**, os **graus de liberdade**, o **p-valor** e — fundamental — o **tamanho do efeito** ou a estimativa em unidades reais. Um p-valor sozinho diz se há efeito, não o quão grande ele é. Para a biologia, o tamanho importa tanto quanto a significância.
 
 ::: {.principio-ia}
-A IA escreve `t.test(...)` e `aov(...)` perfeitamente e até redige uma frase de resultado. O seu trabalho: confirmar que era esse o teste certo (pressupostos!), que a fórmula reflete o seu delineamento, e que a interpretação faz sentido biológico. A IA não sabe que um peso médio de 2 kg é absurdo para a sua espécie de 20 cm — você sabe.
+A IA roda `t.test()` sem nunca perguntar se os pressupostos foram atendidos. Esse é o seu trabalho. Se a normalidade falhar, a alternativa é o teste de **Mann-Whitney** (`wilcox.test()`) — e quem decide trocar é você, lendo os gráficos, não a IA.
+:::
+
+## Rodar o teste
+
+```r
+# pressupostos OK → teste-t
+t.test(peso_g ~ estuario, data = peixes)
+
+# se a normalidade falhou → alternativa não-paramétrica
+wilcox.test(peso_g ~ estuario, data = peixes)
+```
+
+## Como reportar
+
+Um resultado completo traz a estatística **t**, os **graus de liberdade**, o **p-valor** e a **diferença entre as médias em gramas** (o tamanho do efeito, que importa tanto quanto a significância). Exemplo de frase para o relatório:
+
+> "O peso médio diferiu entre os estuários (t = 2,43; gl = 67; p = 0,018), sendo cerca de 25 g maior no estuário A."
+
+No próximo capítulo (@sec-pilar3), pegamos exatamente este resultado e o transformamos num relatório PDF — fechando o ciclo dos três pilares com um único exemplo.
+
+::: {.video}
+{{< video https://www.youtube.com/embed/SEU_VIDEO_ID >}}
 :::

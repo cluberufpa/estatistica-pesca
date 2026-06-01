@@ -1,4 +1,4 @@
-# Pressupostos das análises
+# Pressupostos das análises {#sec-pressupostos}
 
 Este é o capítulo mais importante do curso. **É aqui que mora a competência que a IA não tem.** Um teste estatístico só é válido se seus pressupostos forem atendidos. Rodar o teste é fácil; saber se ele *podia* ser rodado é o que separa uma análise correta de um número sem sentido.
 

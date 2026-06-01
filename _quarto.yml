@@ -54,7 +54,7 @@ book:
     - references.qmd
 
 bibliography: referencias.bib
-csl: abnt.csl   # estilo ABNT para TC/dissertações
+csl: abnt.csl   # estilo ABNT — baixe uma vez (ver COMECE-AQUI.md). Comente esta linha p/ usar o padrão.
 
 format:
   html:
@@ -89,12 +89,10 @@ format:
     lang: pt
 
 # Padrões para todos os chunks de código R
-# Os chunks são ilustrativos: mostrados (echo: true) mas não executados (eval: false).
-# Em um relatório ou desafio real com dados de verdade, basta adicionar
-# eval: true no cabeçalho YAML do .qmd específico para reativar a execução.
 execute:
-  eval: false           # não executa os chunks durante o render do guia
-  echo: true            # mantém o código visível para o leitor
+  eval: false           # NÃO executa o código: os exemplos são ilustrativos (para o aluno ler e aprender).
+                        # Em um relatório/desafio REAL com dados de verdade, use eval: true no YAML daquele .qmd.
+  echo: true            # mostra o código (é o que queremos num guia de estudo)
   freeze: auto          # cacheia resultados; só recomputa o que mudou
   warning: false
   message: false

@@ -8,13 +8,13 @@ Aqui você encontra a teoria, os roteiros de código em R e os exemplos de publi
 
 A disciplina se apoia em **três pilares**, e tudo o que fazemos cai em um deles:
 
-1.  **Planejamento** — como decidir *o que* e *quanto* coletar antes de ir a campo: amostragem de organismos (água, manguezal, embarcações), entrevistas com pescadores e comunidades, e experimentos com pescado ou ecológicos.
-2.  **Análise com R** — importar, tratar, **verificar pressupostos** e rodar as análises, deixando os dados prontos para comunicar.
-3.  **Comunicação** — transformar resultados em algo publicável: o que vai no artigo, no TC, na dissertação, na tese ou no relatório de aula prática, via **Quarto com saída Typst**.
+1. **Planejamento** — como decidir *o que* e *quanto* coletar antes de ir a campo: amostragem de organismos (água, manguezal, embarcações), entrevistas com pescadores e comunidades, e experimentos com pescado ou ecológicos.
+2. **Análise com R** — importar, tratar, **verificar pressupostos** e rodar as análises, deixando os dados prontos para comunicar.
+3. **Comunicação** — transformar resultados em algo publicável: o que vai no artigo, no TC, na dissertação, na tese ou no relatório de aula prática, via **Quarto com saída Typst**.
 
 Parte do conteúdo você estudará de forma **autodidata**, pelos vídeos. Parte veremos juntos em aula: os **conceitos**, por que a estatística importa e os **pressupostos** de cada análise. E uma parte final é praticar a **publicação**.
 
-::: principio-ia
+::: {.principio-ia}
 A partir de 2026 temos IA integrada ao RStudio (o **Posit Assistant**). Neste curso usamos IA de forma consciente, sob um pacto simples:
 
 **A IA escreve o código. Você valida os pressupostos e interpreta o resultado.**
@@ -26,10 +26,10 @@ Uma IA roda um teste-t num piscar de olhos — inclusive quando os pressupostos 
 
 Você vem de **Estatística Básica** (EP05011) e talvez tenha tido pouco contato com R. Tudo bem. Não tratamos ninguém como programador de partida. Sempre que surgir um comando novo, há uma caixa curta explicando o essencial:
 
-::: rnapratica
+::: {.rnapratica}
 Em R, tudo o que você cria fica guardado num **objeto**. O símbolo `<-` é a seta de atribuição: ela guarda o valor da direita no nome da esquerda.
 
-``` r
+```r
 peso_medio <- 245.7   # guarda 245.7 no objeto chamado peso_medio
 peso_medio            # digitar o nome mostra o conteúdo
 #> [1] 245.7

@@ -12,49 +12,61 @@ Num documento Quarto, **a análise e o texto vivem no mesmo arquivo**. Você nã
 
 Reaproveite o esqueleto a cada trabalho:
 
+Continuamos com o **mesmo exemplo dos três pilares**: o teste-t do peso entre dois estuários (@sec-analise-exemplo). Aqui ele vira um relatório PDF:
+
 ````markdown
 ---
-title: "Biometria de tainhas no estuário do Caeté"
+title: "Peso de tainhas entre dois estuários do Caeté"
 author: "Seu Nome"
 date: today
 format: typst
 bibliography: referencias.bib
-csl: https://www.zotero.org/styles/abnt
+csl: abnt.csl
+execute:
+  eval: true        # num relatório REAL queremos executar o código
 ---
 
 # Introdução
-Contextualização e objetivo.
+Contextualização e a pergunta: o peso difere entre os estuários A e B?
 
 # Material e Métodos
-Onde, quando, como coletou; qual análise e por quê.
+Onde, quando, como coletou; por que o teste-t; como os pressupostos foram checados.
 
 ```{r}
 #| label: setup
 #| include: false
 library(tidyverse)
-peixes <- read_csv("dados/coleta.csv")
+peixes <- read_csv("dados/desafio01_estuarios.csv")
+peixes$estuario <- factor(peixes$estuario)
 ```
 
 # Resultados
 
 ```{r}
 #| label: tbl-descritiva
-#| tbl-cap: "Estatística descritiva por espécie."
+#| tbl-cap: "Peso médio por estuário."
 peixes |>
-  group_by(especie) |>
+  group_by(estuario) |>
   summarise(n = n(), media = mean(peso_g), dp = sd(peso_g))
 ```
 
 ```{r}
 #| label: fig-boxplot
-#| fig-cap: "Distribuição do peso por espécie."
-ggplot(peixes, aes(especie, peso_g)) + geom_boxplot()
+#| fig-cap: "Distribuição do peso por estuário."
+#| echo: false
+ggplot(peixes, aes(estuario, peso_g)) + geom_boxplot()
 ```
 
-A @tbl-descritiva resume os dados; a @fig-boxplot mostra que...
+```{r}
+#| label: teste
+teste <- t.test(peso_g ~ estuario, data = peixes)
+teste
+```
+
+A @tbl-descritiva resume os grupos e a @fig-boxplot mostra a diferença.
 
 # Discussão
-Interprete à luz da biologia e da literatura [@sokal2012].
+Interprete o resultado à luz da biologia e da literatura [@king2007].
 
 # Referências
 ````

@@ -11,5 +11,3 @@
 # Não versionar o site renderizado localmente (o GitHub Actions gera)
 # Comente a linha abaixo se preferir versionar /docs manualmente
 # /docs/
-
-**/*.quarto_ipynb

@@ -14,14 +14,23 @@ Guia rápido para tirar o web-book do papel. Siga **nesta ordem**.
    install.packages(c("tidyverse", "readxl", "car", "knitr", "rmarkdown"))
    ```
 
-3. Confira se o Quarto enxerga o Typst (no **Terminal** do RStudio — a aba ao lado do Console):
+3. Baixe o estilo de citação ABNT (uma vez só). No **Terminal** do RStudio, dentro da pasta `webbook`:
+
+   ```bash
+   curl -L -o abnt.csl https://raw.githubusercontent.com/citation-style-language/styles/master/associacao-brasileira-de-normas-tecnicas.csl
+   ```
+
+   Isso cria o arquivo `abnt.csl` na pasta. O `_quarto.yml` já aponta para ele.
+   *(Se não quiser citações em ABNT agora, abra `_quarto.yml` e comente a linha `csl: abnt.csl` colocando um `#` na frente.)*
+
+4. Confira se o Quarto enxerga o Typst (no **Terminal** do RStudio — a aba ao lado do Console):
 
    ```bash
    quarto --version
    quarto check
    ```
 
-4. Renderize o site inteiro:
+5. Renderize o site inteiro:
 
    ```bash
    quarto render
@@ -29,7 +38,7 @@ Guia rápido para tirar o web-book do papel. Siga **nesta ordem**.
 
    Se tudo der certo, aparece uma pasta **`docs/`** com o site. Abra `docs/index.html` no navegador para ver.
 
-5. Para trabalhar com pré-visualização ao vivo (recarrega ao salvar):
+6. Para trabalhar com pré-visualização ao vivo (recarrega ao salvar):
 
    ```bash
    quarto preview
