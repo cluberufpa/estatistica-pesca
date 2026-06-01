@@ -52,9 +52,6 @@ book:
       chapters:
         - capitulos/15-anova-ancova.qmd
         - capitulos/16-regressao.qmd
-    - part: "Desafios com dados"
-      chapters:
-        - capitulos/14-desafios.qmd
     - references.qmd
 
 bibliography: referencias.bib

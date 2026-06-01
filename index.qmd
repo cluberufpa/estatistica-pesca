@@ -2,7 +2,7 @@
 
 Este é o **guia de estudo** da disciplina **Estatística Aplicada à Pesca e Aquicultura** (EP05042, 45 h) do Bacharelado em Engenharia de Pesca da UFPA — Campus Bragança (FEPESCA / IECOS).
 
-Aqui você encontra a teoria, os roteiros de código em R e os exemplos de publicação que conversam com as **apresentações de aula**, com os **vídeos do canal no YouTube** e com os **desafios de dados**. É o seu ponto de retorno: sempre que algo não ficar claro na aula ou no vídeo, volte para o capítulo correspondente.
+Aqui você encontra a teoria, os roteiros de código em R e os exemplos de publicação que conversam com as **apresentações de aula**, com os **vídeos do canal no YouTube** e com os **mini-projetos avaliativos** de cada técnica. É o seu ponto de retorno: sempre que algo não ficar claro na aula ou no vídeo, volte para o capítulo correspondente.
 
 ## Como este curso funciona
 
@@ -47,6 +47,6 @@ Você lê a caixa uma vez; depois ela vira referência para quando precisar volt
 
 ## Como navegar
 
-Use o menu lateral para ir aos capítulos. Cada parte corresponde a um pilar. Os **desafios** (última parte) trazem conjuntos de dados reais para você resolver — é onde a IA e o seu julgamento trabalham juntos.
+Use o menu lateral para ir aos capítulos. Cada parte corresponde a um pilar; a parte **Técnicas de análise** traz, ao final de cada capítulo, um **mini-projeto avaliativo** com dados reais para você resolver — é onde a IA e o seu julgamento trabalham juntos.
 
 > **Licença.** Material didático de uso aberto para fins educacionais. Cite as fontes da ementa ao reutilizar (ver [Referências](references.qmd)).
