@@ -1,0 +1,133 @@
+# Regressão linear {#sec-regressao}
+
+::: {.callout-note appearance="simple"}
+**Nesta técnica em uma frase:** modelar como uma variável numérica resposta varia em função de uma (simples) ou várias (múltipla) variáveis explicativas numéricas.
+:::
+
+Enquanto a ANOVA compara **grupos**, a regressão modela **relações** entre variáveis contínuas. Na biologia pesqueira, o exemplo clássico é a relação **peso–comprimento**.
+
+## Quando usar
+
+Use **regressão linear simples** quando quer descrever ou prever uma variável numérica (peso) a partir de **uma** variável explicativa numérica (comprimento). Use **regressão múltipla** quando há **várias** explicativas ao mesmo tempo (peso em função de comprimento, temperatura e profundidade).
+
+::: {.conceito}
+A regressão ajusta uma reta (ou plano, na múltipla) que melhor descreve os dados. Ela fornece: os **coeficientes** (quanto a resposta muda por unidade da explicativa), o **R²** (quanto da variação a explicativa consegue explicar, de 0 a 1) e o **p-valor** de cada coeficiente (se o efeito difere de zero). Atenção: um R² alto indica bom ajuste, mas **não** prova causa — só associação.
+:::
+
+## Pressupostos
+
+Aqui está a diferença-chave em relação à ANOVA: os pressupostos da regressão se verificam **nos resíduos do modelo**, não nos dados brutos. E o gráfico vale mais que o teste.
+
+::: {.conceito}
+A regressão linear assume:
+
+- **Linearidade** — a relação entre X e Y é aproximadamente uma reta.
+- **Independência** dos resíduos.
+- **Homocedasticidade** — a dispersão dos resíduos é constante ao longo de X (não aumenta "em funil").
+- **Normalidade** dos resíduos.
+
+Todos se verificam de uma vez com `plot(modelo)`, que gera quatro gráficos diagnósticos.
+:::
+
+```r
+modelo <- lm(peso_g ~ comp_cm, data = peixes)
+
+# quatro gráficos de diagnóstico — sempre olhe ANTES de confiar no R²
+par(mfrow = c(2, 2))
+plot(modelo)
+par(mfrow = c(1, 1))
+```
+
+::: {.rnapratica}
+Como ler os quatro gráficos de `plot(modelo)`:
+
+- **Residuals vs Fitted**: procure uma nuvem sem padrão. Uma curva indica não-linearidade.
+- **Q-Q Residuals**: pontos sobre a linha = resíduos normais.
+- **Scale-Location**: linha horizontal = variância constante (homocedasticidade). Um "funil" indica problema.
+- **Residuals vs Leverage**: identifica pontos influentes que puxam a reta.
+:::
+
+::: {.principio-ia}
+A IA ajusta `lm()` e cospe um R² lindo na hora — mesmo quando a relação é curva e a reta não deveria ser usada. Os quatro gráficos de diagnóstico são a sua checagem, e a leitura deles é sua. Para peso–comprimento, a relação real costuma ser **potência** (não reta), e o ajuste se faz em escala log–log: `lm(log(peso_g) ~ log(comp_cm))`. Saber disso é conhecimento de domínio que a IA não aplica sozinha.
+:::
+
+## Como fazer no R
+
+### Regressão simples
+
+```r
+modelo <- lm(peso_g ~ comp_cm, data = peixes)
+summary(modelo)        # coeficientes, R², p-valores
+
+# visualizar a reta ajustada
+library(ggplot2)
+ggplot(peixes, aes(comp_cm, peso_g)) +
+  geom_point(alpha = .6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Comprimento (cm)", y = "Peso (g)")
+```
+
+### Regressão múltipla
+
+```r
+modelo_mult <- lm(peso_g ~ comp_cm + temperatura + profundidade, data = peixes)
+summary(modelo_mult)
+
+# checar multicolinearidade (explicativas muito correlacionadas entre si)
+library(car)
+vif(modelo_mult)        # valores acima de ~5 merecem atenção
+```
+
+::: {.conceito}
+Na regressão múltipla, cada coeficiente mede o efeito daquela variável **mantendo as outras constantes**. Um cuidado novo é a **multicolinearidade**: se duas explicativas são muito correlacionadas entre si (ex.: comprimento e largura), o modelo fica instável. O `vif()` detecta isso.
+:::
+
+## Comparar regressões
+
+Às vezes você quer saber se a relação peso–comprimento **difere entre dois grupos** (ex.: machos vs fêmeas). Isso é comparar regressões, e se faz incluindo a interação:
+
+```r
+# se a interacao comp_cm:sexo for significativa, as inclinações diferem
+modelo_comp <- lm(peso_g ~ comp_cm * sexo, data = peixes)
+summary(modelo_comp)
+```
+
+## Como reportar
+
+Relate a **equação** (ou os coeficientes), o **R²**, o **p-valor** do modelo, e confirme que os **resíduos** atenderam aos pressupostos. Exemplo:
+
+> "O peso aumentou significativamente com o comprimento (β = 18,2 g/cm; p < 0,001; R² = 0,87). O diagnóstico dos resíduos não indicou violações importantes dos pressupostos."
+
+::: {.video}
+{{< video https://www.youtube.com/embed/SEU_VIDEO_ID >}}
+:::
+
+---
+
+## 🎯 Mini-projeto avaliativo {#sec-projeto-regressao}
+
+::: {.callout-important}
+## Projeto — Regressão linear
+
+**Tarefa.** Faça um pequeno projeto usando R, RStudio e Quarto. Modele a relação entre duas variáveis numéricas com **regressão linear**, com diagnóstico completo dos resíduos.
+
+**Dados.** Use a aba `regressao` de `dados/datasets-projetos.xlsx` (ou o conjunto indicado em aula).
+
+**Pergunta a responder.** Como o peso se relaciona com o comprimento na espécie estudada?
+
+**Entregue.** Um **PDF gerado pelo Quarto via Typst** contendo: (1) introdução e pergunta; (2) métodos; (3) **diagnóstico dos resíduos** com os quatro gráficos e sua avaliação; (4) resultado (coeficientes, R²); (5) interpretação biológica dos coeficientes — o que a inclinação significa para a espécie.
+:::
+
+### Rubrica
+
+| Critério | Peso | O que se espera |
+|---|---|---|
+| Reprodutibilidade | 20% | O `.qmd` renderiza sozinho; caminhos relativos; dados na pasta. |
+| Diagnóstico dos resíduos | 30% | Os quatro gráficos + avaliação justificada (reta serve? precisa log?). |
+| Análise correta | 20% | Modelo adequado; transformação quando necessária. |
+| Interpretação | 20% | Explica o que os coeficientes significam biologicamente. |
+| Comunicação (Typst) | 10% | PDF limpo, gráfico e tabela legendados. |
+
+::: {.principio-ia}
+**Na defesa:** *"Os resíduos justificam usar uma reta? Por que (não) transformou os dados? O que a inclinação significa para o seu peixe?"*. A resposta não pode ser "a IA fez assim".
+:::

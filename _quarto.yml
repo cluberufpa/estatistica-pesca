@@ -48,6 +48,10 @@ book:
     - part: "Pilar 3 — Comunicação de resultados"
       chapters:
         - capitulos/13-pilar3-publicacao.qmd
+    - part: "Técnicas de análise"
+      chapters:
+        - capitulos/15-anova-ancova.qmd
+        - capitulos/16-regressao.qmd
     - part: "Desafios com dados"
       chapters:
         - capitulos/14-desafios.qmd

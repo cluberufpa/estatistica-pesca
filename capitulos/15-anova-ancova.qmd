@@ -1,0 +1,151 @@
+# ANOVA e ANCOVA {#sec-anova}
+
+::: {.callout-note appearance="simple"}
+**Nesta técnica em uma frase:** comparar a média de uma variável numérica entre **três ou mais grupos** (ANOVA) — e, quando há uma covariável contínua a controlar, ajustar essa comparação (ANCOVA).
+:::
+
+Este é o primeiro capítulo de técnica. Ele estende o exemplo do teste-t (@sec-analise-exemplo): lá comparamos **dois** estuários; aqui comparamos **vários** grupos de uma vez.
+
+## Quando usar
+
+Use **ANOVA de um fator** quando tem uma variável resposta numérica e quer comparar sua média entre **três ou mais grupos** de um único fator — por exemplo, o peso entre quatro estações de coleta, ou o crescimento entre três dietas.
+
+Use **ANOVA de dois fatores** quando há **dois fatores** atuando ao mesmo tempo (dieta × temperatura), pois ela testa o efeito de cada fator **e a interação** entre eles.
+
+Use **ANCOVA** quando, além do fator categórico, existe uma **covariável contínua** que influencia a resposta e você quer removê-la para comparar os grupos de forma justa — por exemplo, comparar o peso entre estações *controlando pelo comprimento* dos indivíduos.
+
+::: {.conceito}
+A ANOVA testa se **pelo menos um** grupo difere dos demais. A hipótese nula é "todas as médias são iguais". Se for significativa, ela diz que *há* diferença — mas não *onde*. Para descobrir entre quais grupos, usa-se um **teste post-hoc** (Tukey). Por isso ANOVA e post-hoc andam juntos: a ANOVA responde "há diferença?", o Tukey responde "entre quais?".
+:::
+
+## Pressupostos
+
+Os mesmos do teste-t, agora para vários grupos. Verifique sempre antes de confiar.
+
+::: {.conceito}
+A ANOVA assume:
+
+- **Independência** das observações — vem do planejamento; cuidado com pseudo-replicação (@sec-pilar1).
+- **Normalidade dos resíduos** do modelo (não dos dados brutos).
+- **Homogeneidade de variâncias** entre os grupos.
+
+A ANCOVA acrescenta um pressuposto importante: a **homogeneidade das inclinações** — a relação entre a covariável e a resposta deve ser parecida em todos os grupos (retas paralelas). Isso se testa pela interação fator × covariável.
+:::
+
+```r
+modelo <- aov(peso_g ~ estacao, data = peixes)
+
+# Normalidade dos resíduos (gráfico + teste)
+plot(modelo, which = 2)              # Q-Q dos resíduos
+shapiro.test(residuals(modelo))
+
+# Homogeneidade de variâncias
+library(car)
+leveneTest(peso_g ~ estacao, data = peixes)
+```
+
+::: {.principio-ia}
+Peça à IA: *"verifique os pressupostos de uma ANOVA de peso_g por estacao"*. Ela gera o Q-Q, o Shapiro e o Levene. A leitura — *os pontos seguem a linha? as variâncias parecem iguais?* — é sua. Se os pressupostos falharem, a alternativa é **Kruskal-Wallis** (capítulo de não-paramétrica), e quem decide trocar é você.
+:::
+
+## Como fazer no R
+
+### ANOVA de um fator
+
+```r
+peixes$estacao <- factor(peixes$estacao)
+
+modelo <- aov(peso_g ~ estacao, data = peixes)
+summary(modelo)        # tabela da ANOVA: F, gl, p-valor
+
+TukeyHSD(modelo)       # se significativa: quais grupos diferem
+plot(TukeyHSD(modelo)) # visualiza as diferenças e seus intervalos
+```
+
+::: {.rnapratica}
+`aov()` ajusta a ANOVA; `summary()` mostra a tabela com a estatística **F** e o **p-valor**. `TukeyHSD()` faz a comparação par a par entre os grupos, já corrigindo para múltiplas comparações.
+:::
+
+### ANOVA de dois fatores (com interação)
+
+```r
+# o * inclui os dois fatores E a interação entre eles
+modelo2 <- aov(peso_g ~ dieta * temperatura, data = exp)
+summary(modelo2)
+```
+
+::: {.conceito}
+Leia a tabela de **baixo para cima**: primeiro a **interação** (`dieta:temperatura`). Se ela for significativa, o efeito de um fator *depende* do outro — e você interpreta os fatores juntos, não separadamente. Se a interação não for significativa, aí sim interpreta cada fator isoladamente.
+:::
+
+### ANCOVA
+
+```r
+# compara peso entre estações, controlando pelo comprimento (covariável)
+modelo_anc <- aov(peso_g ~ comp_cm + estacao, data = peixes)
+summary(modelo_anc)
+
+# testar o pressuposto das inclinações homogêneas:
+# se a interacao comp_cm:estacao NÃO for significativa, o pressuposto se sustenta
+summary(aov(peso_g ~ comp_cm * estacao, data = peixes))
+```
+
+## Exemplo com dados de pesca
+
+```r
+library(tidyverse)
+peixes <- read_csv("dados/biometria_estacoes.csv")
+peixes$estacao <- factor(peixes$estacao)
+
+# descritiva
+peixes |>
+  group_by(estacao) |>
+  summarise(n = n(), media = mean(peso_g), dp = sd(peso_g))
+
+# ANOVA + post-hoc
+modelo <- aov(peso_g ~ estacao, data = peixes)
+summary(modelo)
+TukeyHSD(modelo)
+```
+
+## Como reportar
+
+Um resultado de ANOVA traz a estatística **F**, os **graus de liberdade** (entre e dentro dos grupos), o **p-valor** e, se significativo, **quais grupos diferem** (Tukey) e **em quanto**. Exemplo:
+
+> "O peso diferiu entre as estações (F~3,116~ = 7,4; p < 0,001). O teste de Tukey indicou que E1 teve peso médio maior que E3 e E4 (diferença ≈ 45 g), sem diferença entre E1 e E2."
+
+Para ANCOVA, relate também o efeito da covariável e confirme que as inclinações eram homogêneas.
+
+::: {.video}
+{{< video https://www.youtube.com/embed/SEU_VIDEO_ID >}}
+:::
+
+---
+
+## 🎯 Mini-projeto avaliativo {#sec-projeto-anova}
+
+::: {.callout-important}
+## Projeto — ANOVA de um fator
+
+**Tarefa.** Faça um pequeno projeto usando R, RStudio e Quarto. Analise se a média de uma variável numérica difere entre os grupos de um fator, usando **ANOVA de um fator** seguida de **Tukey** (ou **Kruskal-Wallis**, se os pressupostos falharem).
+
+**Dados.** Use a aba `anova` de `dados/datasets-projetos.xlsx` (ou o conjunto indicado em aula).
+
+**Pergunta a responder.** O peso dos indivíduos difere entre as estações de coleta?
+
+**Entregue.** Um **PDF gerado pelo Quarto via Typst** contendo: (1) introdução com a pergunta e o contexto; (2) material e métodos; (3) verificação dos pressupostos **com gráficos** e sua decisão sobre o teste; (4) resultado (ANOVA + post-hoc); (5) interpretação biológica.
+:::
+
+### Rubrica
+
+| Critério | Peso | O que se espera |
+|---|---|---|
+| Reprodutibilidade | 20% | O `.qmd` renderiza sozinho; caminhos relativos; dados na pasta. |
+| Verificação de pressupostos | 30% | Gráficos + decisão justificada (seguir com ANOVA ou trocar). |
+| Análise correta | 20% | Teste adequado; post-hoc quando cabível. |
+| Interpretação | 20% | Lê o resultado à luz da biologia, não só repete o p-valor. |
+| Comunicação (Typst) | 10% | PDF limpo, tabela/figura legendadas e referência cruzada. |
+
+::: {.principio-ia}
+**Na defesa:** *"Por que ANOVA e não outro teste? Você checou os pressupostos? Por que Tukey?"*. A resposta não pode ser "a IA sugeriu".
+:::
