@@ -27,7 +27,10 @@ jobs:
         with:
           use-public-rspm: true
 
-      # Instale aqui os pacotes que seus chunks usam de fato.
+      # Como o web-book está com `execute: eval: false`, os pacotes R
+      # não são estritamente necessários para o render. Mantemos a
+      # instalação para o caso de você ligar `eval: true` em algum
+      # capítulo no futuro.
       - name: Instalar pacotes R
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
@@ -38,15 +41,35 @@ jobs:
             any::knitr
             any::rmarkdown
 
-      - name: Renderizar o book (HTML)
+      - name: Garantir estilo ABNT (abnt.csl)
+        run: |
+          if [ ! -f abnt.csl ]; then
+            curl -L -o abnt.csl https://raw.githubusercontent.com/citation-style-language/styles/master/associacao-brasileira-de-normas-tecnicas.csl
+          fi
+
+      # IMPORTANTE: renderiza PDF PRIMEIRO; HTML depois.
+      # O HTML precisa ser o último a escrever em docs/, pois é ele
+      # quem o GitHub Pages vai servir como site.
+      - name: Renderizar PDF (Typst) — opcional
+        run: quarto render --to typst
+        continue-on-error: true   # se o PDF falhar, segue o HTML
+
+      - name: Renderizar HTML (site) — obrigatório
         run: quarto render --to html
 
-      # Renderiza também o PDF via Typst e o coloca em /docs para download.
-      - name: Renderizar o book (PDF/Typst)
-        run: quarto render --to typst || echo "PDF opcional — seguir mesmo se falhar"
+      - name: Verificar se docs/index.html existe
+        run: |
+          if [ ! -f docs/index.html ]; then
+            echo "ERRO: docs/index.html nao foi gerado. Abortando publicacao."
+            ls -la docs/ || true
+            exit 1
+          fi
+          echo "OK: docs/index.html encontrado."
+          ls -la docs/ | head -20
 
       - name: Publicar no GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
+          force_orphan: true   # mantem a branch gh-pages limpa a cada deploy
