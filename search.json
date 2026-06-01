@@ -1,0 +1,952 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Estatística Aplicada à Pesca e Aquicultura",
+    "section": "",
+    "text": "Boas-vindas\nEste é o guia de estudo da disciplina Estatística Aplicada à Pesca e Aquicultura (EP05042, 45 h) do Bacharelado em Engenharia de Pesca da UFPA — Campus Bragança (FEPESCA / IECOS).\nAqui você encontra a teoria, os roteiros de código em R e os exemplos de publicação que conversam com as apresentações de aula, com os vídeos do canal no YouTube e com os mini-projetos avaliativos de cada técnica. É o seu ponto de retorno: sempre que algo não ficar claro na aula ou no vídeo, volte para o capítulo correspondente.",
+    "crumbs": [
+      "Boas-vindas"
+    ]
+  },
+  {
+    "objectID": "index.html#como-este-curso-funciona",
+    "href": "index.html#como-este-curso-funciona",
+    "title": "Estatística Aplicada à Pesca e Aquicultura",
+    "section": "Como este curso funciona",
+    "text": "Como este curso funciona\nA disciplina se apoia em três pilares, e tudo o que fazemos cai em um deles:\n\nPlanejamento — como decidir o que e quanto coletar antes de ir a campo: amostragem de organismos (água, manguezal, embarcações), entrevistas com pescadores e comunidades, e experimentos com pescado ou ecológicos.\nAnálise com R — importar, tratar, verificar pressupostos e rodar as análises, deixando os dados prontos para comunicar.\nComunicação — transformar resultados em algo publicável: o que vai no artigo, no TC, na dissertação, na tese ou no relatório de aula prática, via Quarto com saída Typst.\n\nParte do conteúdo você estudará de forma autodidata, pelos vídeos. Parte veremos juntos em aula: os conceitos, por que a estatística importa e os pressupostos de cada análise. E uma parte final é praticar a publicação.\n\nA partir de 2026 temos IA integrada ao RStudio (o Posit Assistant). Neste curso usamos IA de forma consciente, sob um pacto simples:\nA IA escreve o código. Você valida os pressupostos e interpreta o resultado.\nUma IA roda um teste-t num piscar de olhos — inclusive quando os pressupostos foram violados e o teste não deveria ser usado. Reconhecer isso é competência humana, e é o que avaliamos. Você não precisa decorar sintaxe; precisa saber o que pedir, ler a resposta com olhar crítico e julgar se o resultado faz sentido biológico e estatístico.",
+    "crumbs": [
+      "Boas-vindas"
+    ]
+  },
+  {
+    "objectID": "index.html#você-não-precisa-já-saber-programar",
+    "href": "index.html#você-não-precisa-já-saber-programar",
+    "title": "Estatística Aplicada à Pesca e Aquicultura",
+    "section": "Você não precisa já saber programar",
+    "text": "Você não precisa já saber programar\nVocê vem de Estatística Básica (EP05011) e talvez tenha tido pouco contato com R. Tudo bem. Não tratamos ninguém como programador de partida. Sempre que surgir um comando novo, há uma caixa curta explicando o essencial:\n\nEm R, tudo o que você cria fica guardado num objeto. O símbolo &lt;- é a seta de atribuição: ela guarda o valor da direita no nome da esquerda.\npeso_medio &lt;- 245.7   # guarda 245.7 no objeto chamado peso_medio\npeso_medio            # digitar o nome mostra o conteúdo\n#&gt; [1] 245.7\n\nVocê lê a caixa uma vez; depois ela vira referência para quando precisar voltar.",
+    "crumbs": [
+      "Boas-vindas"
+    ]
+  },
+  {
+    "objectID": "index.html#o-que-você-vai-conseguir-fazer-ao-final",
+    "href": "index.html#o-que-você-vai-conseguir-fazer-ao-final",
+    "title": "Estatística Aplicada à Pesca e Aquicultura",
+    "section": "O que você vai conseguir fazer ao final",
+    "text": "O que você vai conseguir fazer ao final\n\nPlanejar uma coleta ou experimento com tamanho amostral justificado.\nImportar e tratar seus próprios dados em um projeto R organizado.\nEscolher a análise certa, checar seus pressupostos e interpretar a saída.\nProduzir um documento .qmd que vira PDF (via Typst) ou página web, pronto para um relatório ou capítulo de TC.",
+    "crumbs": [
+      "Boas-vindas"
+    ]
+  },
+  {
+    "objectID": "index.html#como-navegar",
+    "href": "index.html#como-navegar",
+    "title": "Estatística Aplicada à Pesca e Aquicultura",
+    "section": "Como navegar",
+    "text": "Como navegar\nUse o menu lateral para ir aos capítulos. Cada parte corresponde a um pilar; a parte Técnicas de análise traz, ao final de cada capítulo, um mini-projeto avaliativo com dados reais para você resolver — é onde a IA e o seu julgamento trabalham juntos.\n\nLicença. Material didático de uso aberto para fins educacionais. Cite as fontes da ementa ao reutilizar (ver Referências).",
+    "crumbs": [
+      "Boas-vindas"
+    ]
+  },
+  {
+    "objectID": "capitulos/01-porque-r.html",
+    "href": "capitulos/01-porque-r.html",
+    "title": "1  Por que R nesta disciplina",
+    "section": "",
+    "text": "1.1 O papel da IA aqui\nVocê poderia analisar dados numa planilha. Por que aprender R?\nTrês razões que importam para quem faz pesca e aquicultura:\nAntes, aprender R significava decorar funções. Agora, com o Posit Assistant dentro do RStudio, o peso muda: você descreve o que quer em português, a IA propõe o código, e o seu trabalho é entender, validar e ajustar. Isso não dispensa aprender os conceitos — pelo contrário, exige que você os domine para saber se a sugestão da IA está correta.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Por que R nesta disciplina</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01-porque-r.html#o-papel-da-ia-aqui",
+    "href": "capitulos/01-porque-r.html#o-papel-da-ia-aqui",
+    "title": "1  Por que R nesta disciplina",
+    "section": "",
+    "text": "Pense na IA como um estagiário muito rápido que digita sem reclamar, mas que não sabe se os pressupostos da sua análise foram atendidos e não conhece o seu peixe. Quem decide se a análise faz sentido é você.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Por que R nesta disciplina</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01-porque-r.html#o-que-vem-a-seguir",
+    "href": "capitulos/01-porque-r.html#o-que-vem-a-seguir",
+    "title": "1  Por que R nesta disciplina",
+    "section": "1.2 O que vem a seguir",
+    "text": "1.2 O que vem a seguir\nNo próximo capítulo, instalamos e conhecemos o RStudio e — o ponto mais importante para organização — os Projetos do RStudio, que evitam o caos de arquivos espalhados.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Por que R nesta disciplina</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02-rstudio-e-projetos.html",
+    "href": "capitulos/02-rstudio-e-projetos.html",
+    "title": "2  RStudio e Projetos",
+    "section": "",
+    "text": "2.1 O painel do RStudio em 1 minuto\nAo abrir o RStudio você vê quatro áreas:",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>RStudio e Projetos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02-rstudio-e-projetos.html#o-painel-do-rstudio-em-1-minuto",
+    "href": "capitulos/02-rstudio-e-projetos.html#o-painel-do-rstudio-em-1-minuto",
+    "title": "2  RStudio e Projetos",
+    "section": "",
+    "text": "Editor (canto superior esquerdo): onde você escreve e salva seus scripts. É aqui que o trabalho fica guardado.\nConsole (canto inferior esquerdo): onde o R executa e responde. Bom para testar uma linha rápida; ruim para guardar trabalho — o que você digita aqui se perde.\nEnvironment (canto superior direito): lista os objetos que existem agora (seus dados, seus resultados).\nOutput (canto inferior direito): gráficos, arquivos, pacotes e ajuda.\n\n\nRegra de ouro: escreva no Editor, não no Console. Para enviar uma linha do editor ao console, use Ctrl+Enter (Windows/Linux) ou Cmd+Enter (Mac). Assim seu trabalho fica salvo no script e ao mesmo tempo executa.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>RStudio e Projetos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02-rstudio-e-projetos.html#projetos-o-fim-dos-arquivos-perdidos",
+    "href": "capitulos/02-rstudio-e-projetos.html#projetos-o-fim-dos-arquivos-perdidos",
+    "title": "2  RStudio e Projetos",
+    "section": "2.2 Projetos: o fim dos arquivos perdidos",
+    "text": "2.2 Projetos: o fim dos arquivos perdidos\nO erro nº 1 de quem começa é espalhar dados, scripts e gráficos por pastas diferentes e depender de caminhos como C:/Usuário/Downloads/dados_finais_v3_REAL.csv. Quando você muda de computador, nada funciona.\nA solução é o Projeto do RStudio: uma pasta única que contém tudo de um trabalho. Ao abrir o projeto, o R passa a “morar” ali — todos os caminhos ficam relativos a essa pasta.\n\nUm Projeto (arquivo .Rproj) define o diretório de trabalho automaticamente. Dentro dele você nunca escreve o caminho completo de um arquivo; escreve só dados/coleta.csv, e funciona em qualquer máquina. Reprodutibilidade começa aqui.\n\nEstrutura recomendada para os trabalhos desta disciplina:\nmeu-trabalho/\n├── meu-trabalho.Rproj\n├── dados/          ← arquivos .csv, .xlsx originais (nunca editados à mão)\n├── scripts/        ← seus .R\n├── figuras/        ← gráficos exportados\n└── relatorio.qmd   ← o documento Quarto (Pilar 3)\nPara criar: File → New Project → New Directory → New Project, escolha o nome e a pasta.\n\nPara ler um arquivo dentro do projeto, use caminho relativo:\ndados &lt;- read.csv(\"dados/coleta.csv\")   # ✅ funciona em qualquer computador\n# em vez de\ndados &lt;- read.csv(\"C:/Users/voce/Downloads/coleta.csv\")   # ❌ quebra fora da sua máquina",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>RStudio e Projetos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02-rstudio-e-projetos.html#peça-à-ia-mas-confira",
+    "href": "capitulos/02-rstudio-e-projetos.html#peça-à-ia-mas-confira",
+    "title": "2  RStudio e Projetos",
+    "section": "2.3 Peça à IA, mas confira",
+    "text": "2.3 Peça à IA, mas confira\nVocê pode pedir ao Posit Assistant: “crie a estrutura de pastas de um projeto de análise”. Ele sugere comandos. Confira se as pastas fazem sentido para o seu trabalho antes de aceitar.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>RStudio e Projetos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03-objetos-e-pacotes.html",
+    "href": "capitulos/03-objetos-e-pacotes.html",
+    "title": "3  Objetos, dados e pacotes",
+    "section": "",
+    "text": "3.1 A seta de atribuição\nTudo em R é um objeto. Entender quatro tipos resolve 90% do dia a dia.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Objetos, dados e pacotes</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03-objetos-e-pacotes.html#a-seta-de-atribuição",
+    "href": "capitulos/03-objetos-e-pacotes.html#a-seta-de-atribuição",
+    "title": "3  Objetos, dados e pacotes",
+    "section": "",
+    "text": "comprimento &lt;- 32.5    # cria um objeto numérico\nespecie &lt;- \"tainha\"     # cria um objeto de texto (entre aspas)\n\n&lt;- guarda o valor à direita no nome à esquerda. Texto vai sempre entre aspas; número, não. O nome do objeto não pode ter espaço nem começar com número — use peso_total, não peso total.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Objetos, dados e pacotes</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03-objetos-e-pacotes.html#vetor-vários-valores-do-mesmo-tipo",
+    "href": "capitulos/03-objetos-e-pacotes.html#vetor-vários-valores-do-mesmo-tipo",
+    "title": "3  Objetos, dados e pacotes",
+    "section": "3.2 Vetor: vários valores do mesmo tipo",
+    "text": "3.2 Vetor: vários valores do mesmo tipo\nA maioria dos dados biológicos é uma sequência de medidas. Em R, isso é um vetor, criado com c() (de combine):\npesos &lt;- c(210, 245, 198, 302, 267)\nmean(pesos)     # média\n#&gt; [1] 244.4\nlength(pesos)   # quantos valores\n#&gt; [1] 5",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Objetos, dados e pacotes</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03-objetos-e-pacotes.html#data-frame-a-sua-tabela-de-coleta",
+    "href": "capitulos/03-objetos-e-pacotes.html#data-frame-a-sua-tabela-de-coleta",
+    "title": "3  Objetos, dados e pacotes",
+    "section": "3.3 Data frame: a sua tabela de coleta",
+    "text": "3.3 Data frame: a sua tabela de coleta\nO objeto mais importante é o data frame: uma tabela com linhas (observações) e colunas (variáveis), como uma planilha.\n\nNum data frame de pesca, cada linha é tipicamente um indivíduo coletado e cada coluna é uma variável medida (espécie, comprimento, peso, estação, sexo). Manter esse formato — uma observação por linha, uma variável por coluna — é o que torna a análise simples depois. Esse formato é chamado de dados arrumados (tidy data).\n\npeixes &lt;- data.frame(\n  especie = c(\"tainha\", \"tainha\", \"robalo\"),\n  comp_cm = c(32.5, 28.1, 41.0),\n  peso_g  = c(245, 198, 510)\n)\npeixes\n#&gt;   especie comp_cm peso_g\n#&gt; 1  tainha    32.5    245\n#&gt; 2  tainha    28.1    198\n#&gt; 3  robalo    41.0    510\nPara olhar um data frame: head(peixes) mostra as primeiras linhas, str(peixes) mostra o tipo de cada coluna, summary(peixes) resume.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Objetos, dados e pacotes</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03-objetos-e-pacotes.html#fator-variáveis-categóricas",
+    "href": "capitulos/03-objetos-e-pacotes.html#fator-variáveis-categóricas",
+    "title": "3  Objetos, dados e pacotes",
+    "section": "3.4 Fator: variáveis categóricas",
+    "text": "3.4 Fator: variáveis categóricas\nespecie e sexo são categorias. Quando vamos analisar grupos, convém transformá-las em fator:\npeixes$especie &lt;- factor(peixes$especie)\nlevels(peixes$especie)\n#&gt; [1] \"robalo\" \"tainha\"\n\nO $ acessa uma coluna do data frame pelo nome: peixes$peso_g é o vetor de pesos. Você verá esse $ o tempo todo.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Objetos, dados e pacotes</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03-objetos-e-pacotes.html#pacotes-funções-extras",
+    "href": "capitulos/03-objetos-e-pacotes.html#pacotes-funções-extras",
+    "title": "3  Objetos, dados e pacotes",
+    "section": "3.5 Pacotes: funções extras",
+    "text": "3.5 Pacotes: funções extras\nO R básico já faz muita coisa, mas pacotes ampliam suas capacidades. Você instala uma vez e carrega a cada sessão:\ninstall.packages(\"tidyverse\")   # uma vez só, baixa da internet\nlibrary(tidyverse)               # toda vez que abrir o R e for usar\nOs pacotes centrais deste curso:\n\n\n\n\n\n\n\nPacote\nPara quê\n\n\n\n\ntidyverse\nimportar, limpar e transformar dados (inclui dplyr, ggplot2, readr)\n\n\nreadxl\nler arquivos .xlsx do Excel\n\n\ncar\ntestes de pressupostos (homogeneidade de variância)\n\n\nggplot2\ngráficos (vem no tidyverse)\n\n\nknitr / quarto\ngerar relatórios (Pilar 3)\n\n\n\n\nNão sabe qual pacote usar para uma tarefa? Pergunte ao Posit Assistant: “qual pacote do tidyverse filtra linhas de um data frame?”. Ele responde dplyr e a função filter(). Você confirma na documentação (?filter) antes de confiar.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Objetos, dados e pacotes</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-quarto-e-typst.html",
+    "href": "capitulos/04-quarto-e-typst.html",
+    "title": "4  Quarto e saída Typst",
+    "section": "",
+    "text": "4.1 O que é Quarto\nEste capítulo é especial: o guia que você está lendo foi feito em Quarto. Ao aprender Quarto, você aprende a ferramenta com que este próprio web-book é construído.\nQuarto é um sistema que combina, num único arquivo .qmd:\nVocê escreve uma vez e gera o que quiser: página web, PDF, Word. Para esta disciplina, a saída de PDF usa o Typst.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Quarto e saída Typst</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-quarto-e-typst.html#o-que-é-quarto",
+    "href": "capitulos/04-quarto-e-typst.html#o-que-é-quarto",
+    "title": "4  Quarto e saída Typst",
+    "section": "",
+    "text": "texto (escrito em Markdown — fácil, sem formatação complicada),\ncódigo R (que roda de verdade e produz resultados),\ne resultados (tabelas, gráficos, números) inseridos automaticamente.\n\n\n\nPor que Typst e não LaTeX? Typst é um motor de composição moderno, rápido e que não exige a instalação pesada do LaTeX. Para relatórios de aula, TCs e artigos, ele produz um PDF limpo com muito menos dor de cabeça. O Quarto cuida de converter seu .qmd em Typst automaticamente.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Quarto e saída Typst</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-quarto-e-typst.html#anatomia-de-um-arquivo-.qmd",
+    "href": "capitulos/04-quarto-e-typst.html#anatomia-de-um-arquivo-.qmd",
+    "title": "4  Quarto e saída Typst",
+    "section": "4.2 Anatomia de um arquivo .qmd",
+    "text": "4.2 Anatomia de um arquivo .qmd\nTodo .qmd tem um cabeçalho YAML no topo, entre ---, que define título e formato de saída:\n---\ntitle: \"Relatório de aula prática — Biometria de tainhas\"\nauthor: \"Seu Nome\"\nformat: typst\n---\n\n## Introdução\n\nColetamos 30 indivíduos no estuário do rio Caeté.\n\n\n::: {.cell}\n\n```{.r .cell-code}\npeixes &lt;- read.csv(\"dados/coleta.csv\")\nmean(peixes$peso_g)\n```\n:::\n\n\nO peso médio observado aparece automaticamente acima.\n\nO bloco entre ```{r} e ``` é um chunk de código. Quando você renderiza o documento, o R executa o chunk e insere o resultado no PDF. Você nunca copia e cola números à mão — eles vêm direto da análise. Se os dados mudarem, o relatório se atualiza sozinho.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Quarto e saída Typst</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-quarto-e-typst.html#renderizar",
+    "href": "capitulos/04-quarto-e-typst.html#renderizar",
+    "title": "4  Quarto e saída Typst",
+    "section": "4.3 Renderizar",
+    "text": "4.3 Renderizar\nNo RStudio, abra o .qmd e clique no botão Render (ou Ctrl+Shift+K). Com format: typst, sai um PDF. Com format: html, sai uma página web.\n# também funciona pelo console:\nquarto::quarto_render(\"relatorio.qmd\")",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Quarto e saída Typst</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-quarto-e-typst.html#figuras-e-tabelas-com-legenda-e-referência",
+    "href": "capitulos/04-quarto-e-typst.html#figuras-e-tabelas-com-legenda-e-referência",
+    "title": "4  Quarto e saída Typst",
+    "section": "4.4 Figuras e tabelas com legenda e referência",
+    "text": "4.4 Figuras e tabelas com legenda e referência\n\n::: {.cell}\n\n```{.r .cell-code}\nhist(peixes$peso_g)\n```\n:::\n\n\nComo mostra a @fig-pesos, os pesos concentram-se entre 200 e 300 g.\nO @fig-pesos cria uma referência cruzada numerada automaticamente — exatamente o que um TC ou artigo precisa.\n\nPeça à IA: “escreva o cabeçalho YAML de um relatório Quarto com saída Typst, título X e meu nome”. Ela entrega o esqueleto. Você preenche o conteúdo científico — que é a parte que importa e que só você pode escrever.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Quarto e saída Typst</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/05-ia-no-rstudio.html",
+    "href": "capitulos/05-ia-no-rstudio.html",
+    "title": "5  IA no RStudio (Posit Assistant)",
+    "section": "",
+    "text": "5.1 Como pedir bem\nA partir de 2026 o RStudio traz IA integrada. Este capítulo é o manual de uso consciente dela nesta disciplina.\nUma IA responde tão bem quanto a sua pergunta. Compare:\nA segunda menciona as variáveis reais, o pacote e o que quer ver. O resultado é muito melhor.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>IA no RStudio (Posit Assistant)</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/05-ia-no-rstudio.html#como-pedir-bem",
+    "href": "capitulos/05-ia-no-rstudio.html#como-pedir-bem",
+    "title": "5  IA no RStudio (Posit Assistant)",
+    "section": "",
+    "text": "❌ “faz um gráfico”\n✅ “faça um boxplot do peso (peso_g) por espécie (especie) usando ggplot2, com eixos rotulados em português”\n\n\n\nUm bom pedido à IA tem três partes: o que (boxplot), com quais dados (colunas peso_g e especie), com qual ferramenta (ggplot2). Quanto mais específico, menos você precisa corrigir depois.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>IA no RStudio (Posit Assistant)</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/05-ia-no-rstudio.html#o-ciclo-pedir-ler-validar-ajustar",
+    "href": "capitulos/05-ia-no-rstudio.html#o-ciclo-pedir-ler-validar-ajustar",
+    "title": "5  IA no RStudio (Posit Assistant)",
+    "section": "5.2 O ciclo: pedir → ler → validar → ajustar",
+    "text": "5.2 O ciclo: pedir → ler → validar → ajustar\n\nPedir o código.\nLer linha por linha. Se houver um comando que você não entende, peça à IA para explicá-lo — ou consulte a caixa “R na prática” correspondente neste guia.\nValidar: o resultado faz sentido biológico? Os pressupostos da análise foram checados? (ver o capítulo de Pressupostos).\nAjustar: peça correções específicas.\n\n\nA IA vai, com toda confiança, rodar um teste-t entre dois grupos sem nunca perguntar se os dados são normais ou se as variâncias são iguais. Esse silêncio é o seu trabalho. Antes de aceitar qualquer teste sugerido, pergunte-se: quais são os pressupostos deste teste e eu os verifiquei? É exatamente o que avaliamos nesta disciplina — não a sua capacidade de digitar o código, que a IA já faz.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>IA no RStudio (Posit Assistant)</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/05-ia-no-rstudio.html#erros-honestos-que-a-ia-comete",
+    "href": "capitulos/05-ia-no-rstudio.html#erros-honestos-que-a-ia-comete",
+    "title": "5  IA no RStudio (Posit Assistant)",
+    "section": "5.3 Erros honestos que a IA comete",
+    "text": "5.3 Erros honestos que a IA comete\n\nUsa um teste cujos pressupostos foram violados (o mais perigoso, porque o código roda e dá um número).\nInventa nomes de função ou de coluna que não existem nos seus dados.\nMistura dialetos (R base com tidyverse) de um jeito que confunde.\nNão conhece o seu peixe: pode sugerir uma análise estatisticamente válida, mas sem sentido para a biologia da espécie.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>IA no RStudio (Posit Assistant)</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/05-ia-no-rstudio.html#o-que-continua-sendo-só-seu",
+    "href": "capitulos/05-ia-no-rstudio.html#o-que-continua-sendo-só-seu",
+    "title": "5  IA no RStudio (Posit Assistant)",
+    "section": "5.4 O que continua sendo só seu",
+    "text": "5.4 O que continua sendo só seu\nPlanejar a coleta, escolher a pergunta científica, julgar os pressupostos, interpretar o resultado à luz da biologia e da ecologia, e decidir o que comunicar. A IA acelera a digitação; o pensamento estatístico e biológico é seu.",
+    "crumbs": [
+      "Fundamentos: R, RStudio e o fluxo de trabalho",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>IA no RStudio (Posit Assistant)</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06-pilar1-planejamento.html",
+    "href": "capitulos/06-pilar1-planejamento.html",
+    "title": "6  Pilar 1 — Por que planejar antes de coletar",
+    "section": "",
+    "text": "6.1 As perguntas do planejamento\nA estatística não começa na análise. Começa antes de ir a campo. A decisão mais cara de um trabalho é coletar dados que não respondem à pergunta — e isso só se evita planejando.\nAntes de qualquer coleta, responda:",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Pilar 1 — Por que planejar antes de coletar</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06-pilar1-planejamento.html#as-perguntas-do-planejamento",
+    "href": "capitulos/06-pilar1-planejamento.html#as-perguntas-do-planejamento",
+    "title": "6  Pilar 1 — Por que planejar antes de coletar",
+    "section": "",
+    "text": "Qual é a pergunta? “O peso difere entre dois estuários?” é diferente de “qual a relação peso–comprimento?”. A pergunta define a análise, e a análise define o que coletar.\nQual a unidade amostral? Um indivíduo? Uma estação? Uma embarcação? Um pescador entrevistado?\nQuantas unidades? É o tamanho amostral — nem tão pequeno que não detecte o efeito, nem tão grande que desperdice recurso.\nComo sortear? Aleatório? Estratificado por estação? Sistemático ao longo de um transecto?",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Pilar 1 — Por que planejar antes de coletar</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06-pilar1-planejamento.html#o-que-vem-nos-próximos-capítulos",
+    "href": "capitulos/06-pilar1-planejamento.html#o-que-vem-nos-próximos-capítulos",
+    "title": "6  Pilar 1 — Por que planejar antes de coletar",
+    "section": "6.2 O que vem nos próximos capítulos",
+    "text": "6.2 O que vem nos próximos capítulos\n\nAmostragem em campo e entrevistas: tipos de amostragem, como sortear, e cuidados ao entrevistar pescadores.\nPlanejamento de experimentos: controle, repetição, casualização — para experimentos com pescado e ecológicos.\n\n\nA IA pode calcular um tamanho amostral se você lhe der o efeito esperado, a variabilidade e o poder desejado. O que ela não faz é definir a sua pergunta científica nem dizer qual é a unidade amostral correta para o seu peixe — isso depende de você conhecer o sistema.",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Pilar 1 — Por que planejar antes de coletar</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07-amostragem-campo.html",
+    "href": "capitulos/07-amostragem-campo.html",
+    "title": "7  Amostragem em campo e entrevistas",
+    "section": "",
+    "text": "7.1 Tipos de amostragem",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Amostragem em campo e entrevistas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07-amostragem-campo.html#tipos-de-amostragem",
+    "href": "capitulos/07-amostragem-campo.html#tipos-de-amostragem",
+    "title": "7  Amostragem em campo e entrevistas",
+    "section": "",
+    "text": "Aleatória simples: cada unidade tem a mesma chance de ser sorteada. Simples, mas pode deixar áreas inteiras de fora por acaso.\nEstratificada: divide a população em grupos homogêneos (estratos — por exemplo, estações de manguezal, classes de profundidade) e sorteia dentro de cada um. Garante representação de todos os grupos e costuma ser a melhor escolha em ambientes heterogêneos como estuários.\nSistemática: sorteia o primeiro e depois pega a cada k unidades (a cada 10 m de um transecto, a cada 5ª embarcação). Prática em campo, mas cuidado se houver um padrão cíclico no ambiente.\nPor conglomerados: sorteia grupos inteiros (todas as embarcações de um porto). Útil quando listar todas as unidades é inviável.",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Amostragem em campo e entrevistas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07-amostragem-campo.html#sortear-no-r",
+    "href": "capitulos/07-amostragem-campo.html#sortear-no-r",
+    "title": "7  Amostragem em campo e entrevistas",
+    "section": "7.2 Sortear no R",
+    "text": "7.2 Sortear no R\nSortear de verdade — em vez de “escolher a olho” — elimina o viés do coletor.\n# sortear 8 estações de uma lista de 20, sem repetição\nestacoes &lt;- paste0(\"E\", 1:20)\nset.seed(42)                       # garante que o sorteio seja reproduzível\nsample(estacoes, size = 8)\n#&gt; [1] \"E1\"  \"E5\"  \"E10\" \"E12\" \"E14\" \"E15\" \"E18\" \"E19\"\n\nset.seed() fixa o ponto de partida do sorteio aleatório. Com a mesma semente, o sample() devolve sempre o mesmo resultado — essencial para que outra pessoa reproduza o seu sorteio. Use sempre antes de qualquer comando aleatório que precise ser documentado.",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Amostragem em campo e entrevistas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07-amostragem-campo.html#entrevistas-com-pescadores-e-comunidades",
+    "href": "capitulos/07-amostragem-campo.html#entrevistas-com-pescadores-e-comunidades",
+    "title": "7  Amostragem em campo e entrevistas",
+    "section": "7.3 Entrevistas com pescadores e comunidades",
+    "text": "7.3 Entrevistas com pescadores e comunidades\nQuando a “amostra” são pessoas, o planejamento ganha camadas:\n\nQuem é a população? Pescadores cadastrados na colônia? Todos que desembarcam no porto? A definição muda quem você pode entrevistar.\nQuestionário estruturado facilita a análise depois: perguntas fechadas viram colunas categóricas; evite perguntas ambíguas.\nÉtica: consentimento informado e anonimização. Dados de pessoas exigem cuidado adicional.\nViés de não-resposta: quem se recusa a responder pode diferir de quem responde. Registre as recusas.",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Amostragem em campo e entrevistas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07-amostragem-campo.html#tamanho-amostral-a-ideia",
+    "href": "capitulos/07-amostragem-campo.html#tamanho-amostral-a-ideia",
+    "title": "7  Amostragem em campo e entrevistas",
+    "section": "7.4 Tamanho amostral: a ideia",
+    "text": "7.4 Tamanho amostral: a ideia\n\nO tamanho amostral adequado depende de três coisas: quão grande é o efeito que você quer detectar, quanta variabilidade existe nos dados, e qual risco de erro você aceita (poder estatístico). Mais variabilidade ou efeitos menores exigem amostras maiores. Não existe um número mágico universal — “30” é uma lenda.\n\nCálculo de poder para comparar duas médias:\n# install.packages(\"pwr\")\nlibrary(pwr)\npwr.t.test(d = 0.8, sig.level = 0.05, power = 0.80)\n# d = tamanho de efeito esperado (diferença padronizada)\n# devolve o n necessário por grupo\n\nPeça à IA: “quantos indivíduos por grupo preciso para detectar uma diferença de 0,8 desvios-padrão com poder de 80%?”. Ela usa pwr. Mas só você sabe se 0,8 é uma diferença biologicamente relevante para a sua espécie — esse valor não sai de uma fórmula, sai do conhecimento do sistema.",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Amostragem em campo e entrevistas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/08-experimentos.html",
+    "href": "capitulos/08-experimentos.html",
+    "title": "8  Planejamento de experimentos",
+    "section": "",
+    "text": "8.1 Pseudo-replicação: o erro clássico\nEm experimentos com pescado (crescimento sob dietas, densidades de estocagem) ou ecológicos (efeito de um tratamento sobre uma comunidade), três princípios protegem suas conclusões.",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Planejamento de experimentos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/08-experimentos.html#pseudo-replicação-o-erro-clássico",
+    "href": "capitulos/08-experimentos.html#pseudo-replicação-o-erro-clássico",
+    "title": "8  Planejamento de experimentos",
+    "section": "",
+    "text": "Se você tem um tanque por tratamento e mede 20 peixes dentro dele, você não tem 20 repetições — tem 1. Os 20 peixes compartilham o mesmo tanque, então não são independentes. Isso se chama pseudo-replicação e é um dos erros mais comuns (e mais graves) em experimentos de aquicultura e ecologia. A unidade experimental é o tanque, não o peixe.",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Planejamento de experimentos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/08-experimentos.html#delineamentos-comuns",
+    "href": "capitulos/08-experimentos.html#delineamentos-comuns",
+    "title": "8  Planejamento de experimentos",
+    "section": "8.2 Delineamentos comuns",
+    "text": "8.2 Delineamentos comuns\n\nInteiramente casualizado (DIC): tratamentos sorteados livremente entre as unidades. Bom quando as unidades são homogêneas (tanques idênticos, mesma sala).\nBlocos casualizados (DBC): quando há uma fonte de variação conhecida (prateleiras, dias de coleta), bloca-se por ela.\nFatorial: testa dois fatores ao mesmo tempo (dieta × temperatura) e, de quebra, a interação entre eles.",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Planejamento de experimentos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/08-experimentos.html#casualizar-no-r",
+    "href": "capitulos/08-experimentos.html#casualizar-no-r",
+    "title": "8  Planejamento de experimentos",
+    "section": "8.3 Casualizar no R",
+    "text": "8.3 Casualizar no R\n# sortear 12 tanques entre 3 dietas (4 repetições cada) — DIC\ntanques &lt;- 1:12\ndietas  &lt;- rep(c(\"A\", \"B\", \"C\"), each = 4)\nset.seed(7)\ndata.frame(tanque = tanques, dieta = sample(dietas))",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Planejamento de experimentos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/08-experimentos.html#do-delineamento-à-análise",
+    "href": "capitulos/08-experimentos.html#do-delineamento-à-análise",
+    "title": "8  Planejamento de experimentos",
+    "section": "8.4 Do delineamento à análise",
+    "text": "8.4 Do delineamento à análise\nO delineamento decide a análise. Não é o contrário. Anote:\n\n\n\nDelineamento\nAnálise típica\n\n\n\n\nDIC, 1 fator, 2 grupos\nteste-t\n\n\nDIC, 1 fator, 3+ grupos\nANOVA de uma via\n\n\nDBC\nANOVA com bloco\n\n\nFatorial 2 fatores\nANOVA fatorial (com interação)\n\n\n\nVeremos cada uma no capítulo de análises — sempre depois de checar os pressupostos.\n\nA IA roda a ANOVA do seu fatorial sem piscar. O que ela não faz por você: garantir que você teve repetição verdadeira (não pseudo-replicação) e que casualizou. Esses cuidados acontecem antes do código, no campo e no planejamento — e nenhuma análise conserta sua ausência.",
+    "crumbs": [
+      "Pilar 1 — Planejamento amostral e experimental",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Planejamento de experimentos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09-pilar2-importacao.html",
+    "href": "capitulos/09-pilar2-importacao.html",
+    "title": "9  Pilar 2 — Importar dados",
+    "section": "",
+    "text": "9.1 Antes de importar: organize a planilha\nCom o planejamento feito e os dados coletados, começa a análise. E ela começa por trazer os dados para dentro do R — sem digitar nada à mão.\nA maior parte dos problemas de importação nasce de planilhas bagunçadas. Antes de salvar:",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Pilar 2 — Importar dados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09-pilar2-importacao.html#antes-de-importar-organize-a-planilha",
+    "href": "capitulos/09-pilar2-importacao.html#antes-de-importar-organize-a-planilha",
+    "title": "9  Pilar 2 — Importar dados",
+    "section": "",
+    "text": "Planilha pronta para análise (dados arrumados):\n\nUma observação por linha, uma variável por coluna.\nPrimeira linha = nomes das colunas, curtos, sem espaço nem acento (comp_cm, não Comprimento (cm)).\nSem células mescladas, sem títulos no meio, sem cores que “significam” algo.\nValores ausentes ficam em branco ou marcados como NA — nunca com “?”, “-” ou “sem dado”.\nDecimais com ponto (32.5), não vírgula, para evitar dor de cabeça.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Pilar 2 — Importar dados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09-pilar2-importacao.html#importar-csv",
+    "href": "capitulos/09-pilar2-importacao.html#importar-csv",
+    "title": "9  Pilar 2 — Importar dados",
+    "section": "9.2 Importar CSV",
+    "text": "9.2 Importar CSV\nlibrary(readr)\npeixes &lt;- read_csv(\"dados/coleta.csv\")",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Pilar 2 — Importar dados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09-pilar2-importacao.html#importar-excel-.xlsx",
+    "href": "capitulos/09-pilar2-importacao.html#importar-excel-.xlsx",
+    "title": "9  Pilar 2 — Importar dados",
+    "section": "9.3 Importar Excel (.xlsx)",
+    "text": "9.3 Importar Excel (.xlsx)\nlibrary(readxl)\npeixes &lt;- read_excel(\"dados/coleta.xlsx\", sheet = \"biometria\")\n\nRepare no caminho \"dados/coleta.csv\": é relativo ao projeto (Capítulo 2). Como você está dentro do Projeto do RStudio, não precisa do caminho completo. Isso faz o código funcionar em qualquer computador.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Pilar 2 — Importar dados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09-pilar2-importacao.html#a-primeira-coisa-a-fazer-depois-de-importar",
+    "href": "capitulos/09-pilar2-importacao.html#a-primeira-coisa-a-fazer-depois-de-importar",
+    "title": "9  Pilar 2 — Importar dados",
+    "section": "9.4 A primeira coisa a fazer depois de importar",
+    "text": "9.4 A primeira coisa a fazer depois de importar\nSempre inspecione antes de analisar:\nhead(peixes)        # primeiras linhas — bateu com a planilha?\nstr(peixes)         # tipo de cada coluna — número é número? texto é texto?\nsummary(peixes)     # resumo — há valores absurdos? NAs demais?\nSe uma coluna que deveria ser número aparece como texto (chr), quase sempre é vírgula decimal ou um caractere estranho escondido. Resolva antes de seguir.\n\n“Importei meus dados mas a coluna peso virou texto, por quê?” — a IA costuma diagnosticar (vírgula decimal, espaço, símbolo). Ótimo uso. Mas confira você mesmo a planilha original; às vezes o problema é um dado digitado errado lá na fonte, e nenhum código conserta isso melhor que corrigir a origem.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Pilar 2 — Importar dados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10-tratamento-dados.html",
+    "href": "capitulos/10-tratamento-dados.html",
+    "title": "10  Tratamento de dados",
+    "section": "",
+    "text": "10.1 O operador pipe\nDados reais chegam sujos: valores faltando, categorias escritas de três jeitos, colunas a calcular. Tratar é prepará-los para a análise — e para o Pilar 3.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Tratamento de dados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10-tratamento-dados.html#o-operador-pipe",
+    "href": "capitulos/10-tratamento-dados.html#o-operador-pipe",
+    "title": "10  Tratamento de dados",
+    "section": "",
+    "text": "O pipe |&gt; encadeia operações: pega o resultado da esquerda e passa como entrada para a direita. Leia como “e então”.\npeixes |&gt;\n  filter(especie == \"tainha\") |&gt;   # e então fique só com tainhas\n  summarise(peso_medio = mean(peso_g))   # e então calcule a média\nÉ muito mais legível que aninhar funções uma dentro da outra.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Tratamento de dados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10-tratamento-dados.html#os-verbos-do-dplyr",
+    "href": "capitulos/10-tratamento-dados.html#os-verbos-do-dplyr",
+    "title": "10  Tratamento de dados",
+    "section": "10.2 Os verbos do dplyr",
+    "text": "10.2 Os verbos do dplyr\nCinco funções resolvem quase tudo:\n\n\n\n\n\n\n\n\nVerbo\nFaz\nExemplo\n\n\n\n\nfilter()\nmantém linhas que satisfazem uma condição\nfilter(peso_g &gt; 200)\n\n\nselect()\nescolhe colunas\nselect(especie, peso_g)\n\n\nmutate()\ncria/altera colunas\nmutate(peso_kg = peso_g / 1000)\n\n\narrange()\nordena linhas\narrange(desc(peso_g))\n\n\nsummarise()\nresume (com group_by)\nsummarise(media = mean(peso_g))",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Tratamento de dados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10-tratamento-dados.html#resumir-por-grupo",
+    "href": "capitulos/10-tratamento-dados.html#resumir-por-grupo",
+    "title": "10  Tratamento de dados",
+    "section": "10.3 Resumir por grupo",
+    "text": "10.3 Resumir por grupo\nA combinação mais útil — estatística descritiva por espécie ou estação:\npeixes |&gt;\n  group_by(especie) |&gt;\n  summarise(\n    n          = n(),\n    peso_medio = mean(peso_g, na.rm = TRUE),\n    desvio     = sd(peso_g, na.rm = TRUE)\n  )\n\nna.rm = TRUE diz ao R para ignorar valores ausentes (NA) no cálculo. Sem isso, se houver um único NA na coluna, a média devolve NA. Quase toda função de resumo aceita esse argumento.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Tratamento de dados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10-tratamento-dados.html#lidar-com-valores-ausentes-e-categorias-inconsistentes",
+    "href": "capitulos/10-tratamento-dados.html#lidar-com-valores-ausentes-e-categorias-inconsistentes",
+    "title": "10  Tratamento de dados",
+    "section": "10.4 Lidar com valores ausentes e categorias inconsistentes",
+    "text": "10.4 Lidar com valores ausentes e categorias inconsistentes\n# quantos NA por coluna?\ncolSums(is.na(peixes))\n\n# padronizar categorias escritas de formas diferentes\npeixes &lt;- peixes |&gt;\n  mutate(especie = tolower(trimws(especie)))   # minúsculas + sem espaços nas pontas",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Tratamento de dados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10-tratamento-dados.html#o-resultado-tratado-alimenta-o-pilar-3",
+    "href": "capitulos/10-tratamento-dados.html#o-resultado-tratado-alimenta-o-pilar-3",
+    "title": "10  Tratamento de dados",
+    "section": "10.5 O resultado tratado alimenta o Pilar 3",
+    "text": "10.5 O resultado tratado alimenta o Pilar 3\nGuarde o data frame limpo. É ele que entra nos gráficos, nas tabelas e no relatório Quarto. Um princípio: nunca edite o arquivo original à mão — todo tratamento é feito por código, para que seja reproduzível e auditável.\n\nTratamento de dados é onde a IA mais ajuda: “padronize a coluna especie para minúsculas e remova espaços”, “crie uma coluna de classe de tamanho a cada 5 cm”. Ela escreve o mutate() correto. Você confere o resultado com head() e summary() — porque uma regra de limpeza errada estraga silenciosamente todos os dados seguintes.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Tratamento de dados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11-pressupostos.html",
+    "href": "capitulos/11-pressupostos.html",
+    "title": "11  Pressupostos das análises",
+    "section": "",
+    "text": "11.1 Os pressupostos mais comuns\nEste é o capítulo mais importante do curso. É aqui que mora a competência que a IA não tem. Um teste estatístico só é válido se seus pressupostos forem atendidos. Rodar o teste é fácil; saber se ele podia ser rodado é o que separa uma análise correta de um número sem sentido.\nA independência é a mais importante e a única que não se conserta com matemática — só com bom planejamento.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Pressupostos das análises</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11-pressupostos.html#os-pressupostos-mais-comuns",
+    "href": "capitulos/11-pressupostos.html#os-pressupostos-mais-comuns",
+    "title": "11  Pressupostos das análises",
+    "section": "",
+    "text": "A maioria dos testes “clássicos” (teste-t, ANOVA, regressão linear) assume:\n\nIndependência das observações — uma medida não influencia a outra. Vem do planejamento, não dá para testar depois. Pseudo-replicação (Cap. 8) viola isso.\nNormalidade — os dados (mais precisamente, os resíduos) seguem aproximadamente uma distribuição normal.\nHomogeneidade de variâncias (homocedasticidade) — os grupos comparados têm variabilidade parecida.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Pressupostos das análises</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11-pressupostos.html#verificar-normalidade",
+    "href": "capitulos/11-pressupostos.html#verificar-normalidade",
+    "title": "11  Pressupostos das análises",
+    "section": "11.2 Verificar normalidade",
+    "text": "11.2 Verificar normalidade\nCombine gráfico (mais informativo) e teste:\n# gráfico Q-Q: pontos próximos da linha = aproximadamente normal\nqqnorm(peixes$peso_g); qqline(peixes$peso_g)\n\n# histograma\nhist(peixes$peso_g)\n\n# teste de Shapiro-Wilk: H0 = dados são normais\nshapiro.test(peixes$peso_g)\n\nCuidado com a interpretação do teste de normalidade: com amostra grande, ele detecta desvios mínimos e “rejeita” a normalidade mesmo quando ela é boa o bastante na prática; com amostra pequena, ele quase nunca rejeita. Por isso o gráfico Q-Q costuma decidir melhor que o p-valor. Olhe a forma, não só o número.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Pressupostos das análises</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11-pressupostos.html#verificar-homogeneidade-de-variâncias",
+    "href": "capitulos/11-pressupostos.html#verificar-homogeneidade-de-variâncias",
+    "title": "11  Pressupostos das análises",
+    "section": "11.3 Verificar homogeneidade de variâncias",
+    "text": "11.3 Verificar homogeneidade de variâncias\n# install.packages(\"car\")\nlibrary(car)\nleveneTest(peso_g ~ especie, data = peixes)   # H0 = variâncias iguais",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Pressupostos das análises</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11-pressupostos.html#e-quando-os-pressupostos-falham",
+    "href": "capitulos/11-pressupostos.html#e-quando-os-pressupostos-falham",
+    "title": "11  Pressupostos das análises",
+    "section": "11.4 E quando os pressupostos falham?",
+    "text": "11.4 E quando os pressupostos falham?\nVocê tem caminhos — e escolher entre eles é decisão sua:\n\nTransformar os dados (log, raiz quadrada) e reverificar.\nUsar um teste que não exige normalidade (não-paramétrico): Mann-Whitney no lugar do teste-t, Kruskal-Wallis no lugar da ANOVA.\nUsar modelos que acomodam a estrutura (modelos lineares generalizados), em situações mais avançadas.\n\n# alternativa não-paramétrica ao teste-t\nwilcox.test(peso_g ~ especie, data = peixes)",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Pressupostos das análises</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11-pressupostos.html#o-fluxo-correto",
+    "href": "capitulos/11-pressupostos.html#o-fluxo-correto",
+    "title": "11  Pressupostos das análises",
+    "section": "11.5 O fluxo correto",
+    "text": "11.5 O fluxo correto\n\nDefina a pergunta e o teste candidato (vem do delineamento, Cap. 8).\nCheque os pressupostos desse teste.\nSe atendidos → rode o teste. Se não → transforme ou troque por uma alternativa, e cheque de novo.\nSó então interprete o resultado.\n\n\nUse a IA assim: “verifique os pressupostos de uma ANOVA de peso_g por especie nestes dados” — ela gera o Q-Q plot, o Levene e o Shapiro. Perfeito. Mas a frase “os pressupostos foram atendidos?” você responde você, lendo os gráficos. Se a IA disser “tudo certo, pode rodar”, desconfie e confira: essa é a parte do trabalho que é sua.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Pressupostos das análises</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/12-analises.html",
+    "href": "capitulos/12-analises.html",
+    "title": "12  Análise: o exemplo do teste-t",
+    "section": "",
+    "text": "12.1 Mapa de decisão (visão geral)\nCom os pressupostos checados, escolhemos a análise. A pergunta e o delineamento decidem — não o contrário. Neste capítulo trabalhamos um exemplo completo com o teste-t, a análise mais simples para comparar grupos. Ele é o nosso fio condutor: você verá o mesmo exemplo planejado (Pilar 1), analisado aqui (Pilar 2) e comunicado em PDF (Pilar 3). As demais técnicas — ANOVA, regressão, não-paramétrica, multivariada — ganham capítulos próprios mais adiante.\nPor enquanto, foquemos no caso de dois grupos.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Análise: o exemplo do teste-t</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/12-analises.html#mapa-de-decisão-visão-geral",
+    "href": "capitulos/12-analises.html#mapa-de-decisão-visão-geral",
+    "title": "12  Análise: o exemplo do teste-t",
+    "section": "",
+    "text": "Que análise usar? Uma prévia do que vem nos capítulos de técnica:\n\nComparar a média de 2 grupos → teste-t (nosso exemplo aqui).\nComparar a média de 3+ grupos → ANOVA.\nRelação entre duas variáveis numéricas → regressão.\nQuando a normalidade falha → alternativas não-paramétricas (Mann-Whitney, etc.).\nMuitas variáveis ao mesmo tempo → multivariada (PCA, agrupamento).",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Análise: o exemplo do teste-t</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/12-analises.html#a-pergunta-do-exemplo",
+    "href": "capitulos/12-analises.html#a-pergunta-do-exemplo",
+    "title": "12  Análise: o exemplo do teste-t",
+    "section": "12.2 A pergunta do exemplo",
+    "text": "12.2 A pergunta do exemplo\n\nO peso das tainhas difere entre dois estuários (A e B)?\n\nÉ uma comparação de uma variável numérica (peso) entre dois grupos (estuário A vs B). O teste indicado é o teste-t para duas amostras independentes — desde que os pressupostos sejam atendidos.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Análise: o exemplo do teste-t</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/12-analises.html#passo-a-passo-no-r",
+    "href": "capitulos/12-analises.html#passo-a-passo-no-r",
+    "title": "12  Análise: o exemplo do teste-t",
+    "section": "12.3 Passo a passo no R",
+    "text": "12.3 Passo a passo no R\nlibrary(tidyverse)\npeixes &lt;- read_csv(\"dados/desafio01_estuarios.csv\")\npeixes$estuario &lt;- factor(peixes$estuario)\n\n# 1. Descritiva por grupo — sempre olhe os dados primeiro\npeixes |&gt;\n  group_by(estuario) |&gt;\n  summarise(n = n(), media = mean(peso_g), dp = sd(peso_g))\n\nA fórmula peso_g ~ estuario lê-se “peso_g em função de estuario”: à esquerda a variável resposta, à direita o grupo. Essa gramática com ~ aparece em quase toda análise do R.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Análise: o exemplo do teste-t</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/12-analises.html#checar-os-pressupostos-antes-do-teste",
+    "href": "capitulos/12-analises.html#checar-os-pressupostos-antes-do-teste",
+    "title": "12  Análise: o exemplo do teste-t",
+    "section": "12.4 Checar os pressupostos (antes do teste!)",
+    "text": "12.4 Checar os pressupostos (antes do teste!)\nO teste-t assume independência, normalidade dentro de cada grupo e variâncias homogêneas. Reveja Capítulo 11 para o detalhe.\n# Normalidade dentro de cada grupo (gráfico decide melhor que o p-valor)\npeixes |&gt; filter(estuario == \"A\") |&gt; pull(peso_g) |&gt; shapiro.test()\npeixes |&gt; filter(estuario == \"B\") |&gt; pull(peso_g) |&gt; shapiro.test()\n\n# Homogeneidade de variâncias\nlibrary(car)\nleveneTest(peso_g ~ estuario, data = peixes)\n\nA IA roda t.test() sem nunca perguntar se os pressupostos foram atendidos. Esse é o seu trabalho. Se a normalidade falhar, a alternativa é o teste de Mann-Whitney (wilcox.test()) — e quem decide trocar é você, lendo os gráficos, não a IA.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Análise: o exemplo do teste-t</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/12-analises.html#rodar-o-teste",
+    "href": "capitulos/12-analises.html#rodar-o-teste",
+    "title": "12  Análise: o exemplo do teste-t",
+    "section": "12.5 Rodar o teste",
+    "text": "12.5 Rodar o teste\n# pressupostos OK → teste-t\nt.test(peso_g ~ estuario, data = peixes)\n\n# se a normalidade falhou → alternativa não-paramétrica\nwilcox.test(peso_g ~ estuario, data = peixes)",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Análise: o exemplo do teste-t</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/12-analises.html#como-reportar",
+    "href": "capitulos/12-analises.html#como-reportar",
+    "title": "12  Análise: o exemplo do teste-t",
+    "section": "12.6 Como reportar",
+    "text": "12.6 Como reportar\nUm resultado completo traz a estatística t, os graus de liberdade, o p-valor e a diferença entre as médias em gramas (o tamanho do efeito, que importa tanto quanto a significância). Exemplo de frase para o relatório:\n\n“O peso médio diferiu entre os estuários (t = 2,43; gl = 67; p = 0,018), sendo cerca de 25 g maior no estuário A.”\n\nNo próximo capítulo (Capítulo 13), pegamos exatamente este resultado e o transformamos num relatório PDF — fechando o ciclo dos três pilares com um único exemplo.",
+    "crumbs": [
+      "Pilar 2 — Análise com R",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Análise: o exemplo do teste-t</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/13-pilar3-publicacao.html",
+    "href": "capitulos/13-pilar3-publicacao.html",
+    "title": "13  Pilar 3 — Comunicar resultados",
+    "section": "",
+    "text": "13.1 O princípio do documento único\nA análise só tem valor quando comunicada. Este pilar transforma o seu data frame analisado naquilo que vai no relatório de aula, no TC, na dissertação, na tese ou no artigo — usando Quarto com saída Typst, o mesmo sistema que constrói este guia.",
+    "crumbs": [
+      "Pilar 3 — Comunicação de resultados",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pilar 3 — Comunicar resultados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/13-pilar3-publicacao.html#o-princípio-do-documento-único",
+    "href": "capitulos/13-pilar3-publicacao.html#o-princípio-do-documento-único",
+    "title": "13  Pilar 3 — Comunicar resultados",
+    "section": "",
+    "text": "Num documento Quarto, a análise e o texto vivem no mesmo arquivo. Você não copia números da análise para o relatório: o relatório executa a análise e insere os resultados sozinho. Se um dado mudar, basta renderizar de novo — números, tabelas e gráficos se atualizam. Isso elimina a classe inteira de erros de “copiei o valor errado da planilha”.",
+    "crumbs": [
+      "Pilar 3 — Comunicação de resultados",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pilar 3 — Comunicar resultados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/13-pilar3-publicacao.html#estrutura-de-um-relatório-de-aula-prática",
+    "href": "capitulos/13-pilar3-publicacao.html#estrutura-de-um-relatório-de-aula-prática",
+    "title": "13  Pilar 3 — Comunicar resultados",
+    "section": "13.2 Estrutura de um relatório de aula prática",
+    "text": "13.2 Estrutura de um relatório de aula prática\nReaproveite o esqueleto a cada trabalho:\nContinuamos com o mesmo exemplo dos três pilares: o teste-t do peso entre dois estuários (Capítulo 12). Aqui ele vira um relatório PDF:\n---\ntitle: \"Peso de tainhas entre dois estuários do Caeté\"\nauthor: \"Seu Nome\"\ndate: today\nformat: typst\nbibliography: referencias.bib\ncsl: abnt.csl\nexecute:\n  eval: true        # num relatório REAL queremos executar o código\n---\n\n# Introdução\nContextualização e a pergunta: o peso difere entre os estuários A e B?\n\n# Material e Métodos\nOnde, quando, como coletou; por que o teste-t; como os pressupostos foram checados.\n\n\n\n# Resultados\n\n\n::: {#tbl-descritiva .cell tbl-cap='Peso médio por estuário.'}\n\n```{.r .cell-code}\npeixes |&gt;\n  group_by(estuario) |&gt;\n  summarise(n = n(), media = mean(peso_g), dp = sd(peso_g))\n```\n:::\n\n\n\n::: {.cell}\n\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nteste &lt;- t.test(peso_g ~ estuario, data = peixes)\nteste\n```\n:::\n\n\nA @tbl-descritiva resume os grupos e a @fig-boxplot mostra a diferença.\n\n# Discussão\nInterprete o resultado à luz da biologia e da literatura [@king2007].\n\n# Referências",
+    "crumbs": [
+      "Pilar 3 — Comunicação de resultados",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pilar 3 — Comunicar resultados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/13-pilar3-publicacao.html#tabelas-e-figuras-que-se-referenciam-sozinhas",
+    "href": "capitulos/13-pilar3-publicacao.html#tabelas-e-figuras-que-se-referenciam-sozinhas",
+    "title": "13  Pilar 3 — Comunicar resultados",
+    "section": "13.3 Tabelas e figuras que se referenciam sozinhas",
+    "text": "13.3 Tabelas e figuras que se referenciam sozinhas\n\n#| label: tbl-... + #| tbl-cap: → tabela numerada; cite com @tbl-....\n#| label: fig-... + #| fig-cap: → figura numerada; cite com @fig-....\n#| include: false → roda o código mas não mostra (bom para o setup).\n#| echo: false → mostra o resultado mas esconde o código (bom para relatório final).\n\n\nAs opções que começam com #| dentro de um chunk são opções do chunk. Elas controlam o que aparece no documento final. Num relatório científico você quase sempre quer #| echo: false nos chunks de resultado — o leitor vê o gráfico, não o código que o gerou.",
+    "crumbs": [
+      "Pilar 3 — Comunicação de resultados",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pilar 3 — Comunicar resultados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/13-pilar3-publicacao.html#citar-a-literatura",
+    "href": "capitulos/13-pilar3-publicacao.html#citar-a-literatura",
+    "title": "13  Pilar 3 — Comunicar resultados",
+    "section": "13.4 Citar a literatura",
+    "text": "13.4 Citar a literatura\nAs referências ficam num arquivo referencias.bib (você exporta do Zotero ou Mendeley). No texto, [@sokal2012] vira a citação formatada; o estilo ABNT (definido no csl) cuida da formatação exigida pelo TC e pela dissertação. A lista de referências é montada automaticamente no fim.",
+    "crumbs": [
+      "Pilar 3 — Comunicação de resultados",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pilar 3 — Comunicar resultados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/13-pilar3-publicacao.html#renderizar-para-entrega",
+    "href": "capitulos/13-pilar3-publicacao.html#renderizar-para-entrega",
+    "title": "13  Pilar 3 — Comunicar resultados",
+    "section": "13.5 Renderizar para entrega",
+    "text": "13.5 Renderizar para entrega\n\nPDF para entregar (relatório, TC): format: typst → botão Render.\nHTML para publicar na web (como este guia): format: html.\n\n\nPeça à IA: “transforme esta análise num relatório Quarto com seções de Métodos e Resultados, código escondido e tabela com legenda”. Ela monta o esqueleto e as opções de chunk. O conteúdo científico — a interpretação, a discussão, a conexão com a literatura — é seu, e é o que faz o trabalho valer.",
+    "crumbs": [
+      "Pilar 3 — Comunicação de resultados",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pilar 3 — Comunicar resultados</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/15-anova-ancova.html",
+    "href": "capitulos/15-anova-ancova.html",
+    "title": "14  ANOVA e ANCOVA",
+    "section": "",
+    "text": "14.1 Quando usar\nEste é o primeiro capítulo de técnica. Ele estende o exemplo do teste-t (Capítulo 12): lá comparamos dois estuários; aqui comparamos vários grupos de uma vez.\nUse ANOVA de um fator quando tem uma variável resposta numérica e quer comparar sua média entre três ou mais grupos de um único fator — por exemplo, o peso entre quatro estações de coleta, ou o crescimento entre três dietas.\nUse ANOVA de dois fatores quando há dois fatores atuando ao mesmo tempo (dieta × temperatura), pois ela testa o efeito de cada fator e a interação entre eles.\nUse ANCOVA quando, além do fator categórico, existe uma covariável contínua que influencia a resposta e você quer removê-la para comparar os grupos de forma justa — por exemplo, comparar o peso entre estações controlando pelo comprimento dos indivíduos.",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ANOVA e ANCOVA</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/15-anova-ancova.html#quando-usar",
+    "href": "capitulos/15-anova-ancova.html#quando-usar",
+    "title": "14  ANOVA e ANCOVA",
+    "section": "",
+    "text": "A ANOVA testa se pelo menos um grupo difere dos demais. A hipótese nula é “todas as médias são iguais”. Se for significativa, ela diz que há diferença — mas não onde. Para descobrir entre quais grupos, usa-se um teste post-hoc (Tukey). Por isso ANOVA e post-hoc andam juntos: a ANOVA responde “há diferença?”, o Tukey responde “entre quais?”.",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ANOVA e ANCOVA</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/15-anova-ancova.html#pressupostos",
+    "href": "capitulos/15-anova-ancova.html#pressupostos",
+    "title": "14  ANOVA e ANCOVA",
+    "section": "14.2 Pressupostos",
+    "text": "14.2 Pressupostos\nOs mesmos do teste-t, agora para vários grupos. Verifique sempre antes de confiar.\n\nA ANOVA assume:\n\nIndependência das observações — vem do planejamento; cuidado com pseudo-replicação (Capítulo 6).\nNormalidade dos resíduos do modelo (não dos dados brutos).\nHomogeneidade de variâncias entre os grupos.\n\nA ANCOVA acrescenta um pressuposto importante: a homogeneidade das inclinações — a relação entre a covariável e a resposta deve ser parecida em todos os grupos (retas paralelas). Isso se testa pela interação fator × covariável.\n\nmodelo &lt;- aov(peso_g ~ estacao, data = peixes)\n\n# Normalidade dos resíduos (gráfico + teste)\nplot(modelo, which = 2)              # Q-Q dos resíduos\nshapiro.test(residuals(modelo))\n\n# Homogeneidade de variâncias\nlibrary(car)\nleveneTest(peso_g ~ estacao, data = peixes)\n\nPeça à IA: “verifique os pressupostos de uma ANOVA de peso_g por estacao”. Ela gera o Q-Q, o Shapiro e o Levene. A leitura — os pontos seguem a linha? as variâncias parecem iguais? — é sua. Se os pressupostos falharem, a alternativa é Kruskal-Wallis (capítulo de não-paramétrica), e quem decide trocar é você.",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ANOVA e ANCOVA</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/15-anova-ancova.html#como-fazer-no-r",
+    "href": "capitulos/15-anova-ancova.html#como-fazer-no-r",
+    "title": "14  ANOVA e ANCOVA",
+    "section": "14.3 Como fazer no R",
+    "text": "14.3 Como fazer no R\n\n14.3.1 ANOVA de um fator\npeixes$estacao &lt;- factor(peixes$estacao)\n\nmodelo &lt;- aov(peso_g ~ estacao, data = peixes)\nsummary(modelo)        # tabela da ANOVA: F, gl, p-valor\n\nTukeyHSD(modelo)       # se significativa: quais grupos diferem\nplot(TukeyHSD(modelo)) # visualiza as diferenças e seus intervalos\n\naov() ajusta a ANOVA; summary() mostra a tabela com a estatística F e o p-valor. TukeyHSD() faz a comparação par a par entre os grupos, já corrigindo para múltiplas comparações.\n\n\n\n14.3.2 ANOVA de dois fatores (com interação)\n# o * inclui os dois fatores E a interação entre eles\nmodelo2 &lt;- aov(peso_g ~ dieta * temperatura, data = exp)\nsummary(modelo2)\n\nLeia a tabela de baixo para cima: primeiro a interação (dieta:temperatura). Se ela for significativa, o efeito de um fator depende do outro — e você interpreta os fatores juntos, não separadamente. Se a interação não for significativa, aí sim interpreta cada fator isoladamente.\n\n\n\n14.3.3 ANCOVA\n# compara peso entre estações, controlando pelo comprimento (covariável)\nmodelo_anc &lt;- aov(peso_g ~ comp_cm + estacao, data = peixes)\nsummary(modelo_anc)\n\n# testar o pressuposto das inclinações homogêneas:\n# se a interacao comp_cm:estacao NÃO for significativa, o pressuposto se sustenta\nsummary(aov(peso_g ~ comp_cm * estacao, data = peixes))",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ANOVA e ANCOVA</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/15-anova-ancova.html#exemplo-com-dados-de-pesca",
+    "href": "capitulos/15-anova-ancova.html#exemplo-com-dados-de-pesca",
+    "title": "14  ANOVA e ANCOVA",
+    "section": "14.4 Exemplo com dados de pesca",
+    "text": "14.4 Exemplo com dados de pesca\nlibrary(tidyverse)\npeixes &lt;- read_csv(\"dados/biometria_estacoes.csv\")\npeixes$estacao &lt;- factor(peixes$estacao)\n\n# descritiva\npeixes |&gt;\n  group_by(estacao) |&gt;\n  summarise(n = n(), media = mean(peso_g), dp = sd(peso_g))\n\n# ANOVA + post-hoc\nmodelo &lt;- aov(peso_g ~ estacao, data = peixes)\nsummary(modelo)\nTukeyHSD(modelo)",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ANOVA e ANCOVA</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/15-anova-ancova.html#como-reportar",
+    "href": "capitulos/15-anova-ancova.html#como-reportar",
+    "title": "14  ANOVA e ANCOVA",
+    "section": "14.5 Como reportar",
+    "text": "14.5 Como reportar\nUm resultado de ANOVA traz a estatística F, os graus de liberdade (entre e dentro dos grupos), o p-valor e, se significativo, quais grupos diferem (Tukey) e em quanto. Exemplo:\n\n“O peso diferiu entre as estações (F3,116 = 7,4; p &lt; 0,001). O teste de Tukey indicou que E1 teve peso médio maior que E3 e E4 (diferença ≈ 45 g), sem diferença entre E1 e E2.”\n\nPara ANCOVA, relate também o efeito da covariável e confirme que as inclinações eram homogêneas.",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ANOVA e ANCOVA</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/15-anova-ancova.html#sec-projeto-anova",
+    "href": "capitulos/15-anova-ancova.html#sec-projeto-anova",
+    "title": "14  ANOVA e ANCOVA",
+    "section": "14.6 🎯 Mini-projeto avaliativo",
+    "text": "14.6 🎯 Mini-projeto avaliativo\n\n\n\n\n\n\nImportanteProjeto — ANOVA de um fator\n\n\n\nTarefa. Faça um pequeno projeto usando R, RStudio e Quarto. Analise se a média de uma variável numérica difere entre os grupos de um fator, usando ANOVA de um fator seguida de Tukey (ou Kruskal-Wallis, se os pressupostos falharem).\nDados. Use a aba anova de dados/datasets-projetos.xlsx (ou o conjunto indicado em aula).\nPergunta a responder. O peso dos indivíduos difere entre as estações de coleta?\nEntregue. Um PDF gerado pelo Quarto via Typst contendo: (1) introdução com a pergunta e o contexto; (2) material e métodos; (3) verificação dos pressupostos com gráficos e sua decisão sobre o teste; (4) resultado (ANOVA + post-hoc); (5) interpretação biológica.\n\n\n\n14.6.1 Rubrica\n\n\n\n\n\n\n\n\nCritério\nPeso\nO que se espera\n\n\n\n\nReprodutibilidade\n20%\nO .qmd renderiza sozinho; caminhos relativos; dados na pasta.\n\n\nVerificação de pressupostos\n30%\nGráficos + decisão justificada (seguir com ANOVA ou trocar).\n\n\nAnálise correta\n20%\nTeste adequado; post-hoc quando cabível.\n\n\nInterpretação\n20%\nLê o resultado à luz da biologia, não só repete o p-valor.\n\n\nComunicação (Typst)\n10%\nPDF limpo, tabela/figura legendadas e referência cruzada.\n\n\n\n\nNa defesa: “Por que ANOVA e não outro teste? Você checou os pressupostos? Por que Tukey?”. A resposta não pode ser “a IA sugeriu”.",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ANOVA e ANCOVA</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/16-regressao.html",
+    "href": "capitulos/16-regressao.html",
+    "title": "15  Regressão linear",
+    "section": "",
+    "text": "15.1 Quando usar\nEnquanto a ANOVA compara grupos, a regressão modela relações entre variáveis contínuas. Na biologia pesqueira, o exemplo clássico é a relação peso–comprimento.\nUse regressão linear simples quando quer descrever ou prever uma variável numérica (peso) a partir de uma variável explicativa numérica (comprimento). Use regressão múltipla quando há várias explicativas ao mesmo tempo (peso em função de comprimento, temperatura e profundidade).",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Regressão linear</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/16-regressao.html#quando-usar",
+    "href": "capitulos/16-regressao.html#quando-usar",
+    "title": "15  Regressão linear",
+    "section": "",
+    "text": "A regressão ajusta uma reta (ou plano, na múltipla) que melhor descreve os dados. Ela fornece: os coeficientes (quanto a resposta muda por unidade da explicativa), o R² (quanto da variação a explicativa consegue explicar, de 0 a 1) e o p-valor de cada coeficiente (se o efeito difere de zero). Atenção: um R² alto indica bom ajuste, mas não prova causa — só associação.",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Regressão linear</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/16-regressao.html#pressupostos",
+    "href": "capitulos/16-regressao.html#pressupostos",
+    "title": "15  Regressão linear",
+    "section": "15.2 Pressupostos",
+    "text": "15.2 Pressupostos\nAqui está a diferença-chave em relação à ANOVA: os pressupostos da regressão se verificam nos resíduos do modelo, não nos dados brutos. E o gráfico vale mais que o teste.\n\nA regressão linear assume:\n\nLinearidade — a relação entre X e Y é aproximadamente uma reta.\nIndependência dos resíduos.\nHomocedasticidade — a dispersão dos resíduos é constante ao longo de X (não aumenta “em funil”).\nNormalidade dos resíduos.\n\nTodos se verificam de uma vez com plot(modelo), que gera quatro gráficos diagnósticos.\n\nmodelo &lt;- lm(peso_g ~ comp_cm, data = peixes)\n\n# quatro gráficos de diagnóstico — sempre olhe ANTES de confiar no R²\npar(mfrow = c(2, 2))\nplot(modelo)\npar(mfrow = c(1, 1))\n\nComo ler os quatro gráficos de plot(modelo):\n\nResiduals vs Fitted: procure uma nuvem sem padrão. Uma curva indica não-linearidade.\nQ-Q Residuals: pontos sobre a linha = resíduos normais.\nScale-Location: linha horizontal = variância constante (homocedasticidade). Um “funil” indica problema.\nResiduals vs Leverage: identifica pontos influentes que puxam a reta.\n\n\n\nA IA ajusta lm() e cospe um R² lindo na hora — mesmo quando a relação é curva e a reta não deveria ser usada. Os quatro gráficos de diagnóstico são a sua checagem, e a leitura deles é sua. Para peso–comprimento, a relação real costuma ser potência (não reta), e o ajuste se faz em escala log–log: lm(log(peso_g) ~ log(comp_cm)). Saber disso é conhecimento de domínio que a IA não aplica sozinha.",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Regressão linear</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/16-regressao.html#como-fazer-no-r",
+    "href": "capitulos/16-regressao.html#como-fazer-no-r",
+    "title": "15  Regressão linear",
+    "section": "15.3 Como fazer no R",
+    "text": "15.3 Como fazer no R\n\n15.3.1 Regressão simples\nmodelo &lt;- lm(peso_g ~ comp_cm, data = peixes)\nsummary(modelo)        # coeficientes, R², p-valores\n\n# visualizar a reta ajustada\nlibrary(ggplot2)\nggplot(peixes, aes(comp_cm, peso_g)) +\n  geom_point(alpha = .6) +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Comprimento (cm)\", y = \"Peso (g)\")\n\n\n15.3.2 Regressão múltipla\nmodelo_mult &lt;- lm(peso_g ~ comp_cm + temperatura + profundidade, data = peixes)\nsummary(modelo_mult)\n\n# checar multicolinearidade (explicativas muito correlacionadas entre si)\nlibrary(car)\nvif(modelo_mult)        # valores acima de ~5 merecem atenção\n\nNa regressão múltipla, cada coeficiente mede o efeito daquela variável mantendo as outras constantes. Um cuidado novo é a multicolinearidade: se duas explicativas são muito correlacionadas entre si (ex.: comprimento e largura), o modelo fica instável. O vif() detecta isso.",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Regressão linear</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/16-regressao.html#comparar-regressões",
+    "href": "capitulos/16-regressao.html#comparar-regressões",
+    "title": "15  Regressão linear",
+    "section": "15.4 Comparar regressões",
+    "text": "15.4 Comparar regressões\nÀs vezes você quer saber se a relação peso–comprimento difere entre dois grupos (ex.: machos vs fêmeas). Isso é comparar regressões, e se faz incluindo a interação:\n# se a interacao comp_cm:sexo for significativa, as inclinações diferem\nmodelo_comp &lt;- lm(peso_g ~ comp_cm * sexo, data = peixes)\nsummary(modelo_comp)",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Regressão linear</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/16-regressao.html#como-reportar",
+    "href": "capitulos/16-regressao.html#como-reportar",
+    "title": "15  Regressão linear",
+    "section": "15.5 Como reportar",
+    "text": "15.5 Como reportar\nRelate a equação (ou os coeficientes), o R², o p-valor do modelo, e confirme que os resíduos atenderam aos pressupostos. Exemplo:\n\n“O peso aumentou significativamente com o comprimento (β = 18,2 g/cm; p &lt; 0,001; R² = 0,87). O diagnóstico dos resíduos não indicou violações importantes dos pressupostos.”",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Regressão linear</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/16-regressao.html#sec-projeto-regressao",
+    "href": "capitulos/16-regressao.html#sec-projeto-regressao",
+    "title": "15  Regressão linear",
+    "section": "15.6 🎯 Mini-projeto avaliativo",
+    "text": "15.6 🎯 Mini-projeto avaliativo\n\n\n\n\n\n\nImportanteProjeto — Regressão linear\n\n\n\nTarefa. Faça um pequeno projeto usando R, RStudio e Quarto. Modele a relação entre duas variáveis numéricas com regressão linear, com diagnóstico completo dos resíduos.\nDados. Use a aba regressao de dados/datasets-projetos.xlsx (ou o conjunto indicado em aula).\nPergunta a responder. Como o peso se relaciona com o comprimento na espécie estudada?\nEntregue. Um PDF gerado pelo Quarto via Typst contendo: (1) introdução e pergunta; (2) métodos; (3) diagnóstico dos resíduos com os quatro gráficos e sua avaliação; (4) resultado (coeficientes, R²); (5) interpretação biológica dos coeficientes — o que a inclinação significa para a espécie.\n\n\n\n15.6.1 Rubrica\n\n\n\n\n\n\n\n\nCritério\nPeso\nO que se espera\n\n\n\n\nReprodutibilidade\n20%\nO .qmd renderiza sozinho; caminhos relativos; dados na pasta.\n\n\nDiagnóstico dos resíduos\n30%\nOs quatro gráficos + avaliação justificada (reta serve? precisa log?).\n\n\nAnálise correta\n20%\nModelo adequado; transformação quando necessária.\n\n\nInterpretação\n20%\nExplica o que os coeficientes significam biologicamente.\n\n\nComunicação (Typst)\n10%\nPDF limpo, gráfico e tabela legendados.\n\n\n\n\nNa defesa: “Os resíduos justificam usar uma reta? Por que (não) transformou os dados? O que a inclinação significa para o seu peixe?”. A resposta não pode ser “a IA fez assim”.",
+    "crumbs": [
+      "Técnicas de análise",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Regressão linear</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "Referências",
+    "section": "",
+    "text": "Livros-guia da ementa\nEsta seção lista a bibliografia da disciplina. Substitua pelos títulos exatos da sua ementa (EP05042) — os itens abaixo são exemplos comuns da área e estão pré-cadastrados em referencias.bib para você ajustar.",
+    "crumbs": [
+      "Referências"
+    ]
+  },
+  {
+    "objectID": "references.html#livros-guia-da-ementa",
+    "href": "references.html#livros-guia-da-ementa",
+    "title": "Referências",
+    "section": "",
+    "text": "Estatística com aplicação biológica e ecológica.\nDelineamento experimental e análise de experimentos.\nAnálise de dados ecológicos em R.\nBiometria pesqueira e dinâmica de populações.\n\n\nPara citar no texto dos capítulos, use [@chave] com a chave definida no arquivo referencias.bib. O estilo ABNT é aplicado automaticamente.",
+    "crumbs": [
+      "Referências"
+    ]
+  }
+]
