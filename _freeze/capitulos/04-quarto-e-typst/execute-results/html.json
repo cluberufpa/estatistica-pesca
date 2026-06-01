@@ -1,0 +1,19 @@
+{
+  "hash": "b4162b1577d828fae5718c480cee385b",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Quarto e saída Typst\n\nEste capítulo é especial: **o guia que você está lendo foi feito em Quarto.** Ao aprender Quarto, você aprende a ferramenta com que este próprio web-book é construído.\n\n## O que é Quarto\n\nQuarto é um sistema que combina, num único arquivo `.qmd`:\n\n- **texto** (escrito em Markdown — fácil, sem formatação complicada),\n- **código R** (que roda de verdade e produz resultados),\n- e **resultados** (tabelas, gráficos, números) inseridos automaticamente.\n\nVocê escreve uma vez e gera o que quiser: página web, PDF, Word. Para esta disciplina, a saída de PDF usa o **Typst**.\n\n::: {.conceito}\n**Por que Typst e não LaTeX?** Typst é um motor de composição moderno, rápido e que não exige a instalação pesada do LaTeX. Para relatórios de aula, TCs e artigos, ele produz um PDF limpo com muito menos dor de cabeça. O Quarto cuida de converter seu `.qmd` em Typst automaticamente.\n:::\n\n## Anatomia de um arquivo `.qmd`\n\nTodo `.qmd` tem um **cabeçalho YAML** no topo, entre `---`, que define título e formato de saída:\n\n````markdown\n---\ntitle: \"Relatório de aula prática — Biometria de tainhas\"\nauthor: \"Seu Nome\"\nformat: typst\n---\n\n## Introdução\n\nColetamos 30 indivíduos no estuário do rio Caeté.\n\n\n::: {.cell}\n\n```{.r .cell-code}\npeixes <- read.csv(\"dados/coleta.csv\")\nmean(peixes$peso_g)\n```\n:::\n\n\nO peso médio observado aparece automaticamente acima.\n````\n\n::: {.rnapratica}\nO bloco entre ```` ```{r} ```` e ```` ``` ```` é um **chunk** de código. Quando você renderiza o documento, o R executa o chunk e insere o resultado no PDF. Você nunca copia e cola números à mão — eles vêm direto da análise. Se os dados mudarem, o relatório se atualiza sozinho.\n:::\n\n## Renderizar\n\nNo RStudio, abra o `.qmd` e clique no botão **Render** (ou `Ctrl+Shift+K`). Com `format: typst`, sai um PDF. Com `format: html`, sai uma página web.\n\n```r\n# também funciona pelo console:\nquarto::quarto_render(\"relatorio.qmd\")\n```\n\n## Figuras e tabelas com legenda e referência\n\n````markdown\n\n::: {.cell}\n\n```{.r .cell-code}\nhist(peixes$peso_g)\n```\n:::\n\n\nComo mostra a @fig-pesos, os pesos concentram-se entre 200 e 300 g.\n````\n\nO `@fig-pesos` cria uma **referência cruzada** numerada automaticamente — exatamente o que um TC ou artigo precisa.\n\n::: {.principio-ia}\nPeça à IA: *\"escreva o cabeçalho YAML de um relatório Quarto com saída Typst, título X e meu nome\"*. Ela entrega o esqueleto. Você preenche o conteúdo científico — que é a parte que importa e que só você pode escrever.\n:::\n\n::: {.video}\n{{< video https://www.youtube.com/embed/SEU_VIDEO_ID >}}\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

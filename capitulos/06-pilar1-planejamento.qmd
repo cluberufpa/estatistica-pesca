@@ -1,0 +1,25 @@
+# Pilar 1 — Por que planejar antes de coletar {#sec-pilar1}
+
+A estatística não começa na análise. Começa **antes de ir a campo**. A decisão mais cara de um trabalho é coletar dados que não respondem à pergunta — e isso só se evita planejando.
+
+::: {.conceito}
+**População** é o conjunto sobre o qual você quer concluir (por exemplo, todas as tainhas do estuário do Caeté). **Amostra** é a parte que você efetivamente mede. A estatística é a ponte que permite, a partir da amostra, dizer algo sobre a população — mas só se a amostra for obtida de forma adequada. Uma amostra mal planejada produz conclusões erradas por mais sofisticada que seja a análise depois.
+:::
+
+## As perguntas do planejamento
+
+Antes de qualquer coleta, responda:
+
+1. **Qual é a pergunta?** "O peso difere entre dois estuários?" é diferente de "qual a relação peso–comprimento?". A pergunta define a análise, e a análise define o que coletar.
+2. **Qual a unidade amostral?** Um indivíduo? Uma estação? Uma embarcação? Um pescador entrevistado?
+3. **Quantas unidades?** É o **tamanho amostral** — nem tão pequeno que não detecte o efeito, nem tão grande que desperdice recurso.
+4. **Como sortear?** Aleatório? Estratificado por estação? Sistemático ao longo de um transecto?
+
+## O que vem nos próximos capítulos
+
+- [Amostragem em campo e entrevistas](07-amostragem-campo.qmd): tipos de amostragem, como sortear, e cuidados ao entrevistar pescadores.
+- [Planejamento de experimentos](08-experimentos.qmd): controle, repetição, casualização — para experimentos com pescado e ecológicos.
+
+::: {.principio-ia}
+A IA pode calcular um tamanho amostral se você lhe der o efeito esperado, a variabilidade e o poder desejado. O que ela **não** faz é definir a sua pergunta científica nem dizer qual é a unidade amostral correta para o seu peixe — isso depende de você conhecer o sistema.
+:::

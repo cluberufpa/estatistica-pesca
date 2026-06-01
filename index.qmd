@@ -1,0 +1,52 @@
+# Boas-vindas {.unnumbered}
+
+Este é o **guia de estudo** da disciplina **Estatística Aplicada à Pesca e Aquicultura** (EP05042, 45 h) do Bacharelado em Engenharia de Pesca da UFPA — Campus Bragança (FEPESCA / IECOS).
+
+Aqui você encontra a teoria, os roteiros de código em R e os exemplos de publicação que conversam com as **apresentações de aula**, com os **vídeos do canal no YouTube** e com os **desafios de dados**. É o seu ponto de retorno: sempre que algo não ficar claro na aula ou no vídeo, volte para o capítulo correspondente.
+
+## Como este curso funciona
+
+A disciplina se apoia em **três pilares**, e tudo o que fazemos cai em um deles:
+
+1.  **Planejamento** — como decidir *o que* e *quanto* coletar antes de ir a campo: amostragem de organismos (água, manguezal, embarcações), entrevistas com pescadores e comunidades, e experimentos com pescado ou ecológicos.
+2.  **Análise com R** — importar, tratar, **verificar pressupostos** e rodar as análises, deixando os dados prontos para comunicar.
+3.  **Comunicação** — transformar resultados em algo publicável: o que vai no artigo, no TC, na dissertação, na tese ou no relatório de aula prática, via **Quarto com saída Typst**.
+
+Parte do conteúdo você estudará de forma **autodidata**, pelos vídeos. Parte veremos juntos em aula: os **conceitos**, por que a estatística importa e os **pressupostos** de cada análise. E uma parte final é praticar a **publicação**.
+
+::: principio-ia
+A partir de 2026 temos IA integrada ao RStudio (o **Posit Assistant**). Neste curso usamos IA de forma consciente, sob um pacto simples:
+
+**A IA escreve o código. Você valida os pressupostos e interpreta o resultado.**
+
+Uma IA roda um teste-t num piscar de olhos — inclusive quando os pressupostos foram violados e o teste não deveria ser usado. *Reconhecer isso é competência humana, e é o que avaliamos.* Você não precisa decorar sintaxe; precisa saber o que pedir, ler a resposta com olhar crítico e julgar se o resultado faz sentido biológico e estatístico.
+:::
+
+## Você não precisa já saber programar
+
+Você vem de **Estatística Básica** (EP05011) e talvez tenha tido pouco contato com R. Tudo bem. Não tratamos ninguém como programador de partida. Sempre que surgir um comando novo, há uma caixa curta explicando o essencial:
+
+::: rnapratica
+Em R, tudo o que você cria fica guardado num **objeto**. O símbolo `<-` é a seta de atribuição: ela guarda o valor da direita no nome da esquerda.
+
+``` r
+peso_medio <- 245.7   # guarda 245.7 no objeto chamado peso_medio
+peso_medio            # digitar o nome mostra o conteúdo
+#> [1] 245.7
+```
+:::
+
+Você lê a caixa uma vez; depois ela vira referência para quando precisar voltar.
+
+## O que você vai conseguir fazer ao final
+
+- Planejar uma coleta ou experimento com tamanho amostral justificado.
+- Importar e tratar seus próprios dados em um **projeto R** organizado.
+- Escolher a análise certa, **checar seus pressupostos** e interpretar a saída.
+- Produzir um documento `.qmd` que vira PDF (via Typst) ou página web, pronto para um relatório ou capítulo de TC.
+
+## Como navegar
+
+Use o menu lateral para ir aos capítulos. Cada parte corresponde a um pilar. Os **desafios** (última parte) trazem conjuntos de dados reais para você resolver — é onde a IA e o seu julgamento trabalham juntos.
+
+> **Licença.** Material didático de uso aberto para fins educacionais. Cite as fontes da ementa ao reutilizar (ver [Referências](references.qmd)).

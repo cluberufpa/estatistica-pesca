@@ -1,0 +1,70 @@
+# Pressupostos das análises
+
+Este é o capítulo mais importante do curso. **É aqui que mora a competência que a IA não tem.** Um teste estatístico só é válido se seus pressupostos forem atendidos. Rodar o teste é fácil; saber se ele *podia* ser rodado é o que separa uma análise correta de um número sem sentido.
+
+::: {.principio-ia}
+A IA roda qualquer teste que você pedir e devolve um p-valor com toda a confiança do mundo — **mesmo quando os pressupostos foram violados e o p-valor não significa nada.** Verificar pressupostos é, por isso, a sua responsabilidade central nesta disciplina. Não delegue.
+:::
+
+## Os pressupostos mais comuns
+
+::: {.conceito}
+A maioria dos testes "clássicos" (teste-t, ANOVA, regressão linear) assume:
+
+- **Independência das observações** — uma medida não influencia a outra. Vem do **planejamento**, não dá para testar depois. Pseudo-replicação (Cap. 8) viola isso.
+- **Normalidade** — os dados (mais precisamente, os resíduos) seguem aproximadamente uma distribuição normal.
+- **Homogeneidade de variâncias (homocedasticidade)** — os grupos comparados têm variabilidade parecida.
+:::
+
+A independência é a mais importante e a única que não se conserta com matemática — só com bom planejamento.
+
+## Verificar normalidade
+
+Combine **gráfico** (mais informativo) e **teste**:
+
+```r
+# gráfico Q-Q: pontos próximos da linha = aproximadamente normal
+qqnorm(peixes$peso_g); qqline(peixes$peso_g)
+
+# histograma
+hist(peixes$peso_g)
+
+# teste de Shapiro-Wilk: H0 = dados são normais
+shapiro.test(peixes$peso_g)
+```
+
+::: {.conceito}
+Cuidado com a interpretação do teste de normalidade: com amostra **grande**, ele detecta desvios mínimos e "rejeita" a normalidade mesmo quando ela é boa o bastante na prática; com amostra **pequena**, ele quase nunca rejeita. Por isso o **gráfico Q-Q** costuma decidir melhor que o p-valor. Olhe a forma, não só o número.
+:::
+
+## Verificar homogeneidade de variâncias
+
+```r
+# install.packages("car")
+library(car)
+leveneTest(peso_g ~ especie, data = peixes)   # H0 = variâncias iguais
+```
+
+## E quando os pressupostos falham?
+
+Você tem caminhos — e escolher entre eles é decisão sua:
+
+- **Transformar** os dados (log, raiz quadrada) e reverificar.
+- **Usar um teste que não exige normalidade** (não-paramétrico): Mann-Whitney no lugar do teste-t, Kruskal-Wallis no lugar da ANOVA.
+- **Usar modelos que acomodam a estrutura** (modelos lineares generalizados), em situações mais avançadas.
+
+```r
+# alternativa não-paramétrica ao teste-t
+wilcox.test(peso_g ~ especie, data = peixes)
+```
+
+## O fluxo correto
+
+1. Defina a pergunta e o teste candidato (vem do delineamento, Cap. 8).
+2. **Cheque os pressupostos** desse teste.
+3. Se atendidos → rode o teste. Se não → transforme ou troque por uma alternativa, e cheque de novo.
+4. Só então interprete o resultado.
+
+::: {.principio-ia}
+Use a IA assim: *"verifique os pressupostos de uma ANOVA de peso_g por especie nestes dados"* — ela gera o Q-Q plot, o Levene e o Shapiro. Perfeito. Mas a frase *"os pressupostos foram atendidos?"* você responde **você**, lendo os gráficos. Se a IA disser "tudo certo, pode rodar", desconfie e confira: essa é a parte do trabalho que é sua.
+:::

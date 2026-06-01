@@ -1,0 +1,90 @@
+# Objetos, dados e pacotes
+
+Tudo em R é um **objeto**. Entender quatro tipos resolve 90% do dia a dia.
+
+## A seta de atribuição
+
+```r
+comprimento <- 32.5    # cria um objeto numérico
+especie <- "tainha"     # cria um objeto de texto (entre aspas)
+```
+
+::: {.rnapratica}
+`<-` guarda o valor à direita no nome à esquerda. Texto vai sempre entre aspas; número, não. O nome do objeto não pode ter espaço nem começar com número — use `peso_total`, não `peso total`.
+:::
+
+## Vetor: vários valores do mesmo tipo
+
+A maioria dos dados biológicos é uma sequência de medidas. Em R, isso é um **vetor**, criado com `c()` (de *combine*):
+
+```r
+pesos <- c(210, 245, 198, 302, 267)
+mean(pesos)     # média
+#> [1] 244.4
+length(pesos)   # quantos valores
+#> [1] 5
+```
+
+## Data frame: a sua tabela de coleta
+
+O objeto mais importante é o **data frame**: uma tabela com linhas (observações) e colunas (variáveis), como uma planilha.
+
+::: {.conceito}
+Num data frame de pesca, cada **linha** é tipicamente um indivíduo coletado e cada **coluna** é uma variável medida (espécie, comprimento, peso, estação, sexo). Manter esse formato — uma observação por linha, uma variável por coluna — é o que torna a análise simples depois. Esse formato é chamado de **dados arrumados** (*tidy data*).
+:::
+
+```r
+peixes <- data.frame(
+  especie = c("tainha", "tainha", "robalo"),
+  comp_cm = c(32.5, 28.1, 41.0),
+  peso_g  = c(245, 198, 510)
+)
+peixes
+#>   especie comp_cm peso_g
+#> 1  tainha    32.5    245
+#> 2  tainha    28.1    198
+#> 3  robalo    41.0    510
+```
+
+Para olhar um data frame: `head(peixes)` mostra as primeiras linhas, `str(peixes)` mostra o tipo de cada coluna, `summary(peixes)` resume.
+
+## Fator: variáveis categóricas
+
+`especie` e `sexo` são **categorias**. Quando vamos analisar grupos, convém transformá-las em **fator**:
+
+```r
+peixes$especie <- factor(peixes$especie)
+levels(peixes$especie)
+#> [1] "robalo" "tainha"
+```
+
+::: {.rnapratica}
+O `$` acessa uma coluna do data frame pelo nome: `peixes$peso_g` é o vetor de pesos. Você verá esse `$` o tempo todo.
+:::
+
+## Pacotes: funções extras
+
+O R básico já faz muita coisa, mas pacotes ampliam suas capacidades. Você **instala uma vez** e **carrega a cada sessão**:
+
+```r
+install.packages("tidyverse")   # uma vez só, baixa da internet
+library(tidyverse)               # toda vez que abrir o R e for usar
+```
+
+Os pacotes centrais deste curso:
+
+| Pacote | Para quê |
+|---|---|
+| `tidyverse` | importar, limpar e transformar dados (inclui `dplyr`, `ggplot2`, `readr`) |
+| `readxl` | ler arquivos `.xlsx` do Excel |
+| `car` | testes de pressupostos (homogeneidade de variância) |
+| `ggplot2` | gráficos (vem no tidyverse) |
+| `knitr` / `quarto` | gerar relatórios (Pilar 3) |
+
+::: {.principio-ia}
+Não sabe qual pacote usar para uma tarefa? Pergunte ao Posit Assistant: *"qual pacote do tidyverse filtra linhas de um data frame?"*. Ele responde `dplyr` e a função `filter()`. Você confirma na documentação (`?filter`) antes de confiar.
+:::
+
+::: {.video}
+{{< video https://www.youtube.com/embed/SEU_VIDEO_ID >}}
+:::

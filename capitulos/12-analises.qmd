@@ -1,0 +1,71 @@
+# As análises
+
+Com os pressupostos checados, escolhemos a análise. A pergunta e o delineamento decidem — não o contrário.
+
+## Mapa de decisão
+
+::: {.conceito}
+**Que análise usar?**
+
+- Comparar a **média de 2 grupos** → teste-t (ou Mann-Whitney se a normalidade falhar).
+- Comparar a **média de 3+ grupos** → ANOVA (ou Kruskal-Wallis).
+- **Relação entre duas variáveis numéricas** → correlação e regressão linear.
+- **Associação entre duas variáveis categóricas** → qui-quadrado.
+- **Dois fatores ao mesmo tempo** → ANOVA fatorial (testa também a interação).
+:::
+
+## Comparar dois grupos
+
+```r
+# pressupostos OK → teste-t
+t.test(peso_g ~ especie, data = peixes)
+
+# normalidade falhou → alternativa não-paramétrica
+wilcox.test(peso_g ~ especie, data = peixes)
+```
+
+## Comparar três ou mais grupos: ANOVA
+
+```r
+modelo <- aov(peso_g ~ estuario, data = peixes)
+summary(modelo)
+
+# se a ANOVA for significativa, qual grupo difere de qual?
+TukeyHSD(modelo)
+```
+
+::: {.rnapratica}
+A fórmula `peso_g ~ estuario` lê-se "peso_g **em função de** estuario". O `~` aparece em quase todas as análises do R: à esquerda a variável resposta, à direita a(s) explicativa(s). É a gramática central da modelagem em R.
+:::
+
+## Relação entre variáveis numéricas: regressão
+
+A relação peso–comprimento é o pão com manteiga da biologia pesqueira:
+
+```r
+modelo <- lm(peso_g ~ comp_cm, data = peixes)
+summary(modelo)        # coeficientes, R², p-valor
+```
+
+::: {.conceito}
+A regressão **também tem pressupostos**, verificados nos **resíduos** (não nos dados brutos): os resíduos devem ser aproximadamente normais, ter variância constante e não mostrar padrão. Cheque com `plot(modelo)` — quatro gráficos diagnósticos aparecem. Para peso–comprimento, costuma-se ajustar a relação na forma log–log, mas isso fica para a aula.
+:::
+
+```r
+plot(modelo)   # diagnóstico dos resíduos — sempre olhe antes de confiar no R²
+```
+
+## Variáveis categóricas: qui-quadrado
+
+```r
+tabela <- table(peixes$sexo, peixes$maturacao)
+chisq.test(tabela)
+```
+
+## Reportar o resultado
+
+Um resultado completo traz: o **teste usado**, a **estatística**, os **graus de liberdade**, o **p-valor** e — fundamental — o **tamanho do efeito** ou a estimativa em unidades reais. Um p-valor sozinho diz se há efeito, não o quão grande ele é. Para a biologia, o tamanho importa tanto quanto a significância.
+
+::: {.principio-ia}
+A IA escreve `t.test(...)` e `aov(...)` perfeitamente e até redige uma frase de resultado. O seu trabalho: confirmar que era esse o teste certo (pressupostos!), que a fórmula reflete o seu delineamento, e que a interpretação faz sentido biológico. A IA não sabe que um peso médio de 2 kg é absurdo para a sua espécie de 20 cm — você sabe.
+:::

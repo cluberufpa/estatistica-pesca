@@ -1,0 +1,17 @@
+# Referências {.unnumbered}
+
+::: {#refs}
+:::
+
+---
+
+## Livros-guia da ementa
+
+Esta seção lista a bibliografia da disciplina. **Substitua pelos títulos exatos da sua ementa (EP05042)** — os itens abaixo são exemplos comuns da área e estão pré-cadastrados em `referencias.bib` para você ajustar.
+
+- Estatística com aplicação biológica e ecológica.
+- Delineamento experimental e análise de experimentos.
+- Análise de dados ecológicos em R.
+- Biometria pesqueira e dinâmica de populações.
+
+> Para citar no texto dos capítulos, use `[@chave]` com a chave definida no arquivo `referencias.bib`. O estilo ABNT é aplicado automaticamente.

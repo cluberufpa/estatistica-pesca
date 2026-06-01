@@ -1,0 +1,84 @@
+# Pilar 3 — Comunicar resultados {#sec-pilar3}
+
+A análise só tem valor quando comunicada. Este pilar transforma o seu data frame analisado naquilo que vai no **relatório de aula, no TC, na dissertação, na tese ou no artigo** — usando Quarto com saída Typst, o mesmo sistema que constrói este guia.
+
+## O princípio do documento único
+
+::: {.conceito}
+Num documento Quarto, **a análise e o texto vivem no mesmo arquivo**. Você não copia números da análise para o relatório: o relatório executa a análise e insere os resultados sozinho. Se um dado mudar, basta renderizar de novo — números, tabelas e gráficos se atualizam. Isso elimina a classe inteira de erros de "copiei o valor errado da planilha".
+:::
+
+## Estrutura de um relatório de aula prática
+
+Reaproveite o esqueleto a cada trabalho:
+
+````markdown
+---
+title: "Biometria de tainhas no estuário do Caeté"
+author: "Seu Nome"
+date: today
+format: typst
+bibliography: referencias.bib
+csl: https://www.zotero.org/styles/abnt
+---
+
+# Introdução
+Contextualização e objetivo.
+
+# Material e Métodos
+Onde, quando, como coletou; qual análise e por quê.
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+peixes <- read_csv("dados/coleta.csv")
+```
+
+# Resultados
+
+```{r}
+#| label: tbl-descritiva
+#| tbl-cap: "Estatística descritiva por espécie."
+peixes |>
+  group_by(especie) |>
+  summarise(n = n(), media = mean(peso_g), dp = sd(peso_g))
+```
+
+```{r}
+#| label: fig-boxplot
+#| fig-cap: "Distribuição do peso por espécie."
+ggplot(peixes, aes(especie, peso_g)) + geom_boxplot()
+```
+
+A @tbl-descritiva resume os dados; a @fig-boxplot mostra que...
+
+# Discussão
+Interprete à luz da biologia e da literatura [@sokal2012].
+
+# Referências
+````
+
+## Tabelas e figuras que se referenciam sozinhas
+
+- `#| label: tbl-...` + `#| tbl-cap:` → tabela numerada; cite com `@tbl-...`.
+- `#| label: fig-...` + `#| fig-cap:` → figura numerada; cite com `@fig-...`.
+- `#| include: false` → roda o código mas não mostra (bom para o `setup`).
+- `#| echo: false` → mostra o resultado mas esconde o código (bom para relatório final).
+
+::: {.rnapratica}
+As opções que começam com `#|` dentro de um chunk são **opções do chunk**. Elas controlam o que aparece no documento final. Num relatório científico você quase sempre quer `#| echo: false` nos chunks de resultado — o leitor vê o gráfico, não o código que o gerou.
+:::
+
+## Citar a literatura
+
+As referências ficam num arquivo `referencias.bib` (você exporta do Zotero ou Mendeley). No texto, `[@sokal2012]` vira a citação formatada; o estilo ABNT (definido no `csl`) cuida da formatação exigida pelo TC e pela dissertação. A lista de referências é montada automaticamente no fim.
+
+## Renderizar para entrega
+
+- **PDF** para entregar (relatório, TC): `format: typst` → botão **Render**.
+- **HTML** para publicar na web (como este guia): `format: html`.
+
+::: {.principio-ia}
+Peça à IA: *"transforme esta análise num relatório Quarto com seções de Métodos e Resultados, código escondido e tabela com legenda"*. Ela monta o esqueleto e as opções de chunk. O conteúdo científico — a interpretação, a discussão, a conexão com a literatura — é seu, e é o que faz o trabalho valer.
+:::

@@ -1,0 +1,51 @@
+# Pilar 2 — Importar dados {#sec-pilar2}
+
+Com o planejamento feito e os dados coletados, começa a análise. E ela começa por trazer os dados para dentro do R — sem digitar nada à mão.
+
+## Antes de importar: organize a planilha
+
+A maior parte dos problemas de importação nasce de planilhas bagunçadas. Antes de salvar:
+
+::: {.conceito}
+**Planilha pronta para análise (dados arrumados):**
+
+- Uma **observação por linha**, uma **variável por coluna**.
+- **Primeira linha** = nomes das colunas, curtos, sem espaço nem acento (`comp_cm`, não `Comprimento (cm)`).
+- **Sem células mescladas**, sem títulos no meio, sem cores que "significam" algo.
+- Valores ausentes ficam **em branco** ou marcados como `NA` — nunca com "?", "-" ou "sem dado".
+- Decimais com **ponto** (`32.5`), não vírgula, para evitar dor de cabeça.
+:::
+
+## Importar CSV
+
+```r
+library(readr)
+peixes <- read_csv("dados/coleta.csv")
+```
+
+## Importar Excel (.xlsx)
+
+```r
+library(readxl)
+peixes <- read_excel("dados/coleta.xlsx", sheet = "biometria")
+```
+
+::: {.rnapratica}
+Repare no caminho `"dados/coleta.csv"`: é **relativo ao projeto** (Capítulo 2). Como você está dentro do Projeto do RStudio, não precisa do caminho completo. Isso faz o código funcionar em qualquer computador.
+:::
+
+## A primeira coisa a fazer depois de importar
+
+**Sempre** inspecione antes de analisar:
+
+```r
+head(peixes)        # primeiras linhas — bateu com a planilha?
+str(peixes)         # tipo de cada coluna — número é número? texto é texto?
+summary(peixes)     # resumo — há valores absurdos? NAs demais?
+```
+
+Se uma coluna que deveria ser número aparece como texto (`chr`), quase sempre é vírgula decimal ou um caractere estranho escondido. Resolva antes de seguir.
+
+::: {.principio-ia}
+*"Importei meus dados mas a coluna peso virou texto, por quê?"* — a IA costuma diagnosticar (vírgula decimal, espaço, símbolo). Ótimo uso. Mas confira você mesmo a planilha original; às vezes o problema é um dado digitado errado lá na fonte, e nenhum código conserta isso melhor que corrigir a origem.
+:::

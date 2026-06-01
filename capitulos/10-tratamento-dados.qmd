@@ -1,0 +1,66 @@
+# Tratamento de dados
+
+Dados reais chegam sujos: valores faltando, categorias escritas de três jeitos, colunas a calcular. Tratar é prepará-los para a análise — e para o Pilar 3.
+
+## O operador pipe
+
+::: {.rnapratica}
+O **pipe** `|>` encadeia operações: pega o resultado da esquerda e passa como entrada para a direita. Leia como "e então".
+
+```r
+peixes |>
+  filter(especie == "tainha") |>   # e então fique só com tainhas
+  summarise(peso_medio = mean(peso_g))   # e então calcule a média
+```
+
+É muito mais legível que aninhar funções uma dentro da outra.
+:::
+
+## Os verbos do dplyr
+
+Cinco funções resolvem quase tudo:
+
+| Verbo | Faz | Exemplo |
+|---|---|---|
+| `filter()` | mantém linhas que satisfazem uma condição | `filter(peso_g > 200)` |
+| `select()` | escolhe colunas | `select(especie, peso_g)` |
+| `mutate()` | cria/altera colunas | `mutate(peso_kg = peso_g / 1000)` |
+| `arrange()` | ordena linhas | `arrange(desc(peso_g))` |
+| `summarise()` | resume (com `group_by`) | `summarise(media = mean(peso_g))` |
+
+## Resumir por grupo
+
+A combinação mais útil — estatística descritiva por espécie ou estação:
+
+```r
+peixes |>
+  group_by(especie) |>
+  summarise(
+    n          = n(),
+    peso_medio = mean(peso_g, na.rm = TRUE),
+    desvio     = sd(peso_g, na.rm = TRUE)
+  )
+```
+
+::: {.rnapratica}
+`na.rm = TRUE` diz ao R para **ignorar valores ausentes** (`NA`) no cálculo. Sem isso, se houver um único `NA` na coluna, a média devolve `NA`. Quase toda função de resumo aceita esse argumento.
+:::
+
+## Lidar com valores ausentes e categorias inconsistentes
+
+```r
+# quantos NA por coluna?
+colSums(is.na(peixes))
+
+# padronizar categorias escritas de formas diferentes
+peixes <- peixes |>
+  mutate(especie = tolower(trimws(especie)))   # minúsculas + sem espaços nas pontas
+```
+
+## O resultado tratado alimenta o Pilar 3
+
+Guarde o data frame limpo. É ele que entra nos gráficos, nas tabelas e no relatório Quarto. Um princípio: **nunca edite o arquivo original à mão** — todo tratamento é feito por código, para que seja reproduzível e auditável.
+
+::: {.principio-ia}
+Tratamento de dados é onde a IA mais ajuda: *"padronize a coluna especie para minúsculas e remova espaços"*, *"crie uma coluna de classe de tamanho a cada 5 cm"*. Ela escreve o `mutate()` correto. Você confere o resultado com `head()` e `summary()` — porque uma regra de limpeza errada estraga silenciosamente todos os dados seguintes.
+:::

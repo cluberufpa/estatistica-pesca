@@ -1,0 +1,50 @@
+# Planejamento de experimentos
+
+Em experimentos com pescado (crescimento sob dietas, densidades de estocagem) ou ecológicos (efeito de um tratamento sobre uma comunidade), três princípios protegem suas conclusões.
+
+::: {.conceito}
+**Os três princípios de Fisher:**
+
+- **Repetição** — cada tratamento aplicado a várias unidades experimentais independentes. Sem repetição, você não consegue estimar a variabilidade natural e não sabe se a diferença observada é real ou acaso.
+- **Casualização** — sortear quais unidades recebem qual tratamento. Evita que um viés (um tanque mais ensolarado, por exemplo) se confunda com o efeito do tratamento.
+- **Controle local (blocagem)** — agrupar unidades parecidas em blocos e aplicar todos os tratamentos dentro de cada bloco. Remove a variação conhecida (prateleira, dia, lote) para enxergar melhor o efeito do tratamento.
+:::
+
+## Pseudo-replicação: o erro clássico
+
+::: {.conceito}
+Se você tem **um** tanque por tratamento e mede 20 peixes dentro dele, você **não** tem 20 repetições — tem 1. Os 20 peixes compartilham o mesmo tanque, então não são independentes. Isso se chama **pseudo-replicação** e é um dos erros mais comuns (e mais graves) em experimentos de aquicultura e ecologia. A unidade experimental é o tanque, não o peixe.
+:::
+
+## Delineamentos comuns
+
+- **Inteiramente casualizado (DIC)**: tratamentos sorteados livremente entre as unidades. Bom quando as unidades são homogêneas (tanques idênticos, mesma sala).
+- **Blocos casualizados (DBC)**: quando há uma fonte de variação conhecida (prateleiras, dias de coleta), bloca-se por ela.
+- **Fatorial**: testa dois fatores ao mesmo tempo (dieta × temperatura) e, de quebra, a **interação** entre eles.
+
+## Casualizar no R
+
+```r
+# sortear 12 tanques entre 3 dietas (4 repetições cada) — DIC
+tanques <- 1:12
+dietas  <- rep(c("A", "B", "C"), each = 4)
+set.seed(7)
+data.frame(tanque = tanques, dieta = sample(dietas))
+```
+
+## Do delineamento à análise
+
+O delineamento **decide a análise**. Não é o contrário. Anote:
+
+| Delineamento | Análise típica |
+|---|---|
+| DIC, 1 fator, 2 grupos | teste-t |
+| DIC, 1 fator, 3+ grupos | ANOVA de uma via |
+| DBC | ANOVA com bloco |
+| Fatorial 2 fatores | ANOVA fatorial (com interação) |
+
+Veremos cada uma no [capítulo de análises](12-analises.qmd) — sempre depois de checar os [pressupostos](11-pressupostos.qmd).
+
+::: {.principio-ia}
+A IA roda a ANOVA do seu fatorial sem piscar. O que ela não faz por você: garantir que você teve repetição verdadeira (não pseudo-replicação) e que casualizou. Esses cuidados acontecem **antes** do código, no campo e no planejamento — e nenhuma análise conserta sua ausência.
+:::

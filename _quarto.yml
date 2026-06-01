@@ -1,0 +1,108 @@
+project:
+  type: book
+  output-dir: docs          # GitHub Pages serve a partir de /docs
+  resources:
+    - dados/                # datasets dos desafios viajam junto com o site
+
+book:
+  title: "Estatística Aplicada à Pesca e Aquicultura"
+  subtitle: "Guia de estudo com R, RStudio e Quarto — apoiado por IA"
+  author: "Prof. Evaldo Silva"
+  date: today
+  date-format: "DD/MM/YYYY"
+  favicon: figuras/favicon.png
+  cover-image: figuras/capa.png
+  site-url: https://SEU_USUARIO.github.io/estatistica-pesca/
+  repo-url: https://github.com/SEU_USUARIO/estatistica-pesca
+  repo-actions: [edit, issue]
+  sharing: [twitter, linkedin]
+  search: true
+  page-footer:
+    left: "FEPESCA / IECOS — UFPA Campus Bragança · EP05042 (45 h)"
+    right: "Construído com [Quarto](https://quarto.org)"
+  sidebar:
+    style: docked
+    background: light
+    collapse-level: 1
+
+  chapters:
+    - index.qmd
+    - part: "Fundamentos: R, RStudio e o fluxo de trabalho"
+      chapters:
+        - capitulos/01-porque-r.qmd
+        - capitulos/02-rstudio-e-projetos.qmd
+        - capitulos/03-objetos-e-pacotes.qmd
+        - capitulos/04-quarto-e-typst.qmd
+        - capitulos/05-ia-no-rstudio.qmd
+    - part: "Pilar 1 — Planejamento amostral e experimental"
+      chapters:
+        - capitulos/06-pilar1-planejamento.qmd
+        - capitulos/07-amostragem-campo.qmd
+        - capitulos/08-experimentos.qmd
+    - part: "Pilar 2 — Análise com R"
+      chapters:
+        - capitulos/09-pilar2-importacao.qmd
+        - capitulos/10-tratamento-dados.qmd
+        - capitulos/11-pressupostos.qmd
+        - capitulos/12-analises.qmd
+    - part: "Pilar 3 — Comunicação de resultados"
+      chapters:
+        - capitulos/13-pilar3-publicacao.qmd
+    - part: "Desafios com dados"
+      chapters:
+        - capitulos/14-desafios.qmd
+    - references.qmd
+
+bibliography: referencias.bib
+csl: abnt.csl   # estilo ABNT para TC/dissertações
+
+format:
+  html:
+    theme:
+      - cosmo
+      - estilo.scss
+    toc: true
+    toc-title: "Nesta página"
+    toc-depth: 3
+    number-sections: true
+    code-copy: true
+    code-overflow: wrap
+    code-link: true
+    code-fold: false
+    fig-align: center
+    callout-appearance: simple
+    df-print: paged
+    lang: pt
+
+  # PDF via Typst — saída leve e moderna, sem LaTeX
+  typst:
+    toc: true
+    toc-title: "Sumário"
+    number-sections: true
+    fontsize: 11pt
+    papersize: a4
+    margin:
+      x: 2.5cm
+      y: 2.5cm
+    mainfont: "Libertinus Serif"
+    fig-align: center
+    lang: pt
+
+# Padrões para todos os chunks de código R
+# Os chunks são ilustrativos: mostrados (echo: true) mas não executados (eval: false).
+# Em um relatório ou desafio real com dados de verdade, basta adicionar
+# eval: true no cabeçalho YAML do .qmd específico para reativar a execução.
+execute:
+  eval: false           # não executa os chunks durante o render do guia
+  echo: true            # mantém o código visível para o leitor
+  freeze: auto          # cacheia resultados; só recomputa o que mudou
+  warning: false
+  message: false
+
+knitr:
+  opts_chunk:
+    comment: "#>"
+    collapse: true
+    fig-width: 6
+    fig-height: 4
+    dpi: 200

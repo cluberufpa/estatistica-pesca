@@ -1,0 +1,15 @@
+# Cache e arquivos temporários do Quarto/R
+/.quarto/
+*_files/
+*_cache/
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.rproj.bak
+
+# Não versionar o site renderizado localmente (o GitHub Actions gera)
+# Comente a linha abaixo se preferir versionar /docs manualmente
+# /docs/
+
+**/*.quarto_ipynb

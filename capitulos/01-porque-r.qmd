@@ -1,0 +1,30 @@
+# Por que R nesta disciplina
+
+Você poderia analisar dados numa planilha. Por que aprender R?
+
+Três razões que importam para quem faz pesca e aquicultura:
+
+- **Reprodutibilidade.** Um script R é a receita exata da sua análise. Qualquer pessoa — inclusive você daqui a um ano — consegue rodar de novo e obter o mesmo resultado. Numa planilha, ninguém sabe quais células foram editadas à mão.
+- **Escala e repetição.** Coletou dados de 12 estações de manguezal? A mesma análise roda para as 12 com o mesmo código. Chegou a 13ª? Uma linha a mais.
+- **Da coleta ao artigo, sem sair do lugar.** Com R + Quarto, o mesmo arquivo que faz a análise gera o relatório, o gráfico do TC e a tabela da dissertação. É o que veremos no Pilar 3.
+
+::: {.conceito}
+R é uma **linguagem de programação estatística**. RStudio é o **ambiente** onde você escreve R com conforto (editor, gráficos, ajuda, histórico). Você instala os dois separadamente: primeiro o R, depois o RStudio. O RStudio sozinho não funciona — ele precisa do R por baixo.
+:::
+
+## O papel da IA aqui
+
+Antes, aprender R significava decorar funções. Agora, com o **Posit Assistant** dentro do RStudio, o peso muda: você descreve o que quer em português, a IA propõe o código, e o seu trabalho é **entender, validar e ajustar**. Isso não dispensa aprender os conceitos — pelo contrário, exige que você os domine para saber se a sugestão da IA está correta.
+
+::: {.principio-ia}
+Pense na IA como um estagiário muito rápido que digita sem reclamar, mas que **não sabe se os pressupostos da sua análise foram atendidos** e **não conhece o seu peixe**. Quem decide se a análise faz sentido é você.
+:::
+
+## O que vem a seguir
+
+No próximo capítulo, instalamos e conhecemos o RStudio e — o ponto mais importante para organização — os **Projetos do RStudio**, que evitam o caos de arquivos espalhados.
+
+::: {.video}
+<!-- Substitua o ID pelo vídeo correspondente do seu canal -->
+{{< video https://www.youtube.com/embed/SEU_VIDEO_ID >}}
+:::

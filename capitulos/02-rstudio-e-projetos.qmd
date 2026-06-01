@@ -1,0 +1,55 @@
+# RStudio e Projetos
+
+## O painel do RStudio em 1 minuto
+
+Ao abrir o RStudio você vê quatro áreas:
+
+- **Editor** (canto superior esquerdo): onde você escreve e salva seus scripts. É aqui que o trabalho fica guardado.
+- **Console** (canto inferior esquerdo): onde o R executa e responde. Bom para testar uma linha rápida; ruim para guardar trabalho — o que você digita aqui se perde.
+- **Environment** (canto superior direito): lista os objetos que existem agora (seus dados, seus resultados).
+- **Output** (canto inferior direito): gráficos, arquivos, pacotes e ajuda.
+
+::: {.rnapratica}
+Regra de ouro: **escreva no Editor, não no Console.** Para enviar uma linha do editor ao console, use `Ctrl+Enter` (Windows/Linux) ou `Cmd+Enter` (Mac). Assim seu trabalho fica salvo no script e ao mesmo tempo executa.
+:::
+
+## Projetos: o fim dos arquivos perdidos
+
+O erro nº 1 de quem começa é espalhar dados, scripts e gráficos por pastas diferentes e depender de caminhos como `C:/Usuário/Downloads/dados_finais_v3_REAL.csv`. Quando você muda de computador, nada funciona.
+
+A solução é o **Projeto do RStudio**: uma pasta única que contém tudo de um trabalho. Ao abrir o projeto, o R passa a "morar" ali — todos os caminhos ficam relativos a essa pasta.
+
+::: {.conceito}
+Um **Projeto** (arquivo `.Rproj`) define o **diretório de trabalho** automaticamente. Dentro dele você nunca escreve o caminho completo de um arquivo; escreve só `dados/coleta.csv`, e funciona em qualquer máquina. Reprodutibilidade começa aqui.
+:::
+
+Estrutura recomendada para os trabalhos desta disciplina:
+
+```
+meu-trabalho/
+├── meu-trabalho.Rproj
+├── dados/          ← arquivos .csv, .xlsx originais (nunca editados à mão)
+├── scripts/        ← seus .R
+├── figuras/        ← gráficos exportados
+└── relatorio.qmd   ← o documento Quarto (Pilar 3)
+```
+
+Para criar: **File → New Project → New Directory → New Project**, escolha o nome e a pasta.
+
+::: {.rnapratica}
+Para ler um arquivo dentro do projeto, use caminho **relativo**:
+
+```r
+dados <- read.csv("dados/coleta.csv")   # ✅ funciona em qualquer computador
+# em vez de
+dados <- read.csv("C:/Users/voce/Downloads/coleta.csv")   # ❌ quebra fora da sua máquina
+```
+:::
+
+## Peça à IA, mas confira
+
+Você pode pedir ao Posit Assistant: *"crie a estrutura de pastas de um projeto de análise"*. Ele sugere comandos. Confira se as pastas fazem sentido para o **seu** trabalho antes de aceitar.
+
+::: {.video}
+{{< video https://www.youtube.com/embed/SEU_VIDEO_ID >}}
+:::

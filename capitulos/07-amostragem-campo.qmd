@@ -1,0 +1,55 @@
+# Amostragem em campo e entrevistas
+
+## Tipos de amostragem
+
+::: {.conceito}
+- **Aleatória simples**: cada unidade tem a mesma chance de ser sorteada. Simples, mas pode deixar áreas inteiras de fora por acaso.
+- **Estratificada**: divide a população em grupos homogêneos (*estratos* — por exemplo, estações de manguezal, classes de profundidade) e sorteia dentro de cada um. Garante representação de todos os grupos e costuma ser a melhor escolha em ambientes heterogêneos como estuários.
+- **Sistemática**: sorteia o primeiro e depois pega a cada *k* unidades (a cada 10 m de um transecto, a cada 5ª embarcação). Prática em campo, mas cuidado se houver um padrão cíclico no ambiente.
+- **Por conglomerados**: sorteia grupos inteiros (todas as embarcações de um porto). Útil quando listar todas as unidades é inviável.
+:::
+
+## Sortear no R
+
+Sortear de verdade — em vez de "escolher a olho" — elimina o viés do coletor.
+
+```r
+# sortear 8 estações de uma lista de 20, sem repetição
+estacoes <- paste0("E", 1:20)
+set.seed(42)                       # garante que o sorteio seja reproduzível
+sample(estacoes, size = 8)
+#> [1] "E1"  "E5"  "E10" "E12" "E14" "E15" "E18" "E19"
+```
+
+::: {.rnapratica}
+`set.seed()` fixa o ponto de partida do sorteio aleatório. Com a mesma semente, o `sample()` devolve sempre o mesmo resultado — essencial para que outra pessoa reproduza o seu sorteio. Use sempre antes de qualquer comando aleatório que precise ser documentado.
+:::
+
+## Entrevistas com pescadores e comunidades
+
+Quando a "amostra" são pessoas, o planejamento ganha camadas:
+
+- **Quem é a população?** Pescadores cadastrados na colônia? Todos que desembarcam no porto? A definição muda quem você pode entrevistar.
+- **Questionário estruturado** facilita a análise depois: perguntas fechadas viram colunas categóricas; evite perguntas ambíguas.
+- **Ética**: consentimento informado e anonimização. Dados de pessoas exigem cuidado adicional.
+- **Viés de não-resposta**: quem se recusa a responder pode diferir de quem responde. Registre as recusas.
+
+## Tamanho amostral: a ideia
+
+::: {.conceito}
+O tamanho amostral adequado depende de três coisas: **quão grande é o efeito** que você quer detectar, **quanta variabilidade** existe nos dados, e **qual risco de erro** você aceita (poder estatístico). Mais variabilidade ou efeitos menores exigem amostras maiores. Não existe um número mágico universal — "30" é uma lenda.
+:::
+
+Cálculo de poder para comparar duas médias:
+
+```r
+# install.packages("pwr")
+library(pwr)
+pwr.t.test(d = 0.8, sig.level = 0.05, power = 0.80)
+# d = tamanho de efeito esperado (diferença padronizada)
+# devolve o n necessário por grupo
+```
+
+::: {.principio-ia}
+Peça à IA: *"quantos indivíduos por grupo preciso para detectar uma diferença de 0,8 desvios-padrão com poder de 80%?"*. Ela usa `pwr`. Mas só você sabe se 0,8 é uma diferença biologicamente relevante para a sua espécie — esse valor não sai de uma fórmula, sai do conhecimento do sistema.
+:::

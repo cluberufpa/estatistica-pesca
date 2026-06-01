@@ -1,0 +1,43 @@
+# IA no RStudio (Posit Assistant)
+
+A partir de 2026 o RStudio traz IA integrada. Este capítulo é o **manual de uso consciente** dela nesta disciplina.
+
+## Como pedir bem
+
+Uma IA responde tão bem quanto a sua pergunta. Compare:
+
+> ❌ "faz um gráfico"
+>
+> ✅ "faça um boxplot do peso (`peso_g`) por espécie (`especie`) usando ggplot2, com eixos rotulados em português"
+
+A segunda menciona **as variáveis reais**, **o pacote** e **o que quer ver**. O resultado é muito melhor.
+
+::: {.rnapratica}
+Um bom pedido à IA tem três partes: **o que** (boxplot), **com quais dados** (colunas `peso_g` e `especie`), **com qual ferramenta** (ggplot2). Quanto mais específico, menos você precisa corrigir depois.
+:::
+
+## O ciclo: pedir → ler → validar → ajustar
+
+1. **Pedir** o código.
+2. **Ler** linha por linha. Se houver um comando que você não entende, peça à IA para explicá-lo — ou consulte a caixa "R na prática" correspondente neste guia.
+3. **Validar**: o resultado faz sentido biológico? Os pressupostos da análise foram checados? (ver o capítulo de [Pressupostos](11-pressupostos.qmd)).
+4. **Ajustar**: peça correções específicas.
+
+::: {.principio-ia}
+A IA vai, com toda confiança, rodar um teste-t entre dois grupos sem nunca perguntar se os dados são normais ou se as variâncias são iguais. **Esse silêncio é o seu trabalho.** Antes de aceitar qualquer teste sugerido, pergunte-se: *quais são os pressupostos deste teste e eu os verifiquei?* É exatamente o que avaliamos nesta disciplina — não a sua capacidade de digitar o código, que a IA já faz.
+:::
+
+## Erros honestos que a IA comete
+
+- **Usa um teste cujos pressupostos foram violados** (o mais perigoso, porque o código *roda* e dá um número).
+- **Inventa nomes de função ou de coluna** que não existem nos seus dados.
+- **Mistura dialetos** (R base com tidyverse) de um jeito que confunde.
+- **Não conhece o seu peixe**: pode sugerir uma análise estatisticamente válida, mas sem sentido para a biologia da espécie.
+
+## O que continua sendo só seu
+
+Planejar a coleta, escolher a pergunta científica, julgar os pressupostos, interpretar o resultado à luz da biologia e da ecologia, e decidir o que comunicar. A IA acelera a digitação; o pensamento estatístico e biológico é seu.
+
+::: {.video}
+{{< video https://www.youtube.com/embed/SEU_VIDEO_ID >}}
+:::

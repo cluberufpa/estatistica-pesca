@@ -1,0 +1,75 @@
+# Quarto e saída Typst
+
+Este capítulo é especial: **o guia que você está lendo foi feito em Quarto.** Ao aprender Quarto, você aprende a ferramenta com que este próprio web-book é construído.
+
+## O que é Quarto
+
+Quarto é um sistema que combina, num único arquivo `.qmd`:
+
+- **texto** (escrito em Markdown — fácil, sem formatação complicada),
+- **código R** (que roda de verdade e produz resultados),
+- e **resultados** (tabelas, gráficos, números) inseridos automaticamente.
+
+Você escreve uma vez e gera o que quiser: página web, PDF, Word. Para esta disciplina, a saída de PDF usa o **Typst**.
+
+::: {.conceito}
+**Por que Typst e não LaTeX?** Typst é um motor de composição moderno, rápido e que não exige a instalação pesada do LaTeX. Para relatórios de aula, TCs e artigos, ele produz um PDF limpo com muito menos dor de cabeça. O Quarto cuida de converter seu `.qmd` em Typst automaticamente.
+:::
+
+## Anatomia de um arquivo `.qmd`
+
+Todo `.qmd` tem um **cabeçalho YAML** no topo, entre `---`, que define título e formato de saída:
+
+````markdown
+---
+title: "Relatório de aula prática — Biometria de tainhas"
+author: "Seu Nome"
+format: typst
+---
+
+## Introdução
+
+Coletamos 30 indivíduos no estuário do rio Caeté.
+
+```{r}
+peixes <- read.csv("dados/coleta.csv")
+mean(peixes$peso_g)
+```
+
+O peso médio observado aparece automaticamente acima.
+````
+
+::: {.rnapratica}
+O bloco entre ```` ```{r} ```` e ```` ``` ```` é um **chunk** de código. Quando você renderiza o documento, o R executa o chunk e insere o resultado no PDF. Você nunca copia e cola números à mão — eles vêm direto da análise. Se os dados mudarem, o relatório se atualiza sozinho.
+:::
+
+## Renderizar
+
+No RStudio, abra o `.qmd` e clique no botão **Render** (ou `Ctrl+Shift+K`). Com `format: typst`, sai um PDF. Com `format: html`, sai uma página web.
+
+```r
+# também funciona pelo console:
+quarto::quarto_render("relatorio.qmd")
+```
+
+## Figuras e tabelas com legenda e referência
+
+````markdown
+```{r}
+#| label: fig-pesos
+#| fig-cap: "Distribuição do peso dos indivíduos coletados."
+hist(peixes$peso_g)
+```
+
+Como mostra a @fig-pesos, os pesos concentram-se entre 200 e 300 g.
+````
+
+O `@fig-pesos` cria uma **referência cruzada** numerada automaticamente — exatamente o que um TC ou artigo precisa.
+
+::: {.principio-ia}
+Peça à IA: *"escreva o cabeçalho YAML de um relatório Quarto com saída Typst, título X e meu nome"*. Ela entrega o esqueleto. Você preenche o conteúdo científico — que é a parte que importa e que só você pode escrever.
+:::
+
+::: {.video}
+{{< video https://www.youtube.com/embed/SEU_VIDEO_ID >}}
+:::
